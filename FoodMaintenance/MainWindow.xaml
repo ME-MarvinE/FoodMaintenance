@@ -15,8 +15,18 @@
     mc:Ignorable="d"
     WindowStyle="None"
     WindowState="{Binding WindowState}"
-    BorderThickness="7"
     WindowStartupLocation="CenterScreen">
+
+    <Window.Style>
+        <Style TargetType="{x:Type Window}" BasedOn="{StaticResource {x:Type Window}}">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding WindowState}" Value="{x:Static WindowState.Maximized}">
+                    <Setter Property="BorderThickness" Value="7"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
 
     <WindowChrome.WindowChrome>
         <WindowChrome
