@@ -11,7 +11,20 @@
     Width="800"
     Height="550"
     Background="{StaticResource MainBackgroundColorBrush}"
-    mc:Ignorable="d">
+    Name="This"
+    mc:Ignorable="d"
+    WindowStyle="None"
+    WindowState="{Binding WindowState}"
+    BorderThickness="7"
+    WindowStartupLocation="CenterScreen">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            ResizeBorderThickness="12"
+            CaptionHeight="25"
+            CornerRadius="0"
+            GlassFrameThickness="0"/>
+    </WindowChrome.WindowChrome>
 
     <Grid>
         <Grid.Resources>
@@ -23,31 +36,131 @@
             </DataTemplate>
         </Grid.Resources>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="0.3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Background="{StaticResource MenuBarBackgroundColorBrush}">
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Background="{StaticResource TitleBarBackgroundColorBrush}">
+            <Grid.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                    <Setter Property="Width" Value="50"/>
+                    <Setter Property="Padding" Value="9"/>
+                    <Setter Property="Foreground" Value="White"/>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}" Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="{Binding HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <ContentPresenter VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource WindowButtonHoverColorBrush}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource WindowButtonPressedColorBrush}"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="{Binding Title, ElementName=This}" Foreground="{StaticResource MainForegroundColorBrush}" FontSize="{x:Static SystemFonts.CaptionFontSize}" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="15,0,0,0"/>
+
+            <!--Minimize Button-->
+            <Button Grid.Column="1" Command="{Binding ChangeWindowStateCommand}" CommandParameter="{x:Static WindowState.Minimized}">
+                <Image Source="Images/white_minimize.png"/>
+            </Button>
+            <!--Maximize Button-->
+            <Button Grid.Column="2" Command="{Binding ChangeWindowStateCommand}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter Property="CommandParameter" Value="{x:Static WindowState.Maximized}"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding WindowState}" Value="{x:Static WindowState.Maximized}">
+                                <Setter Property="CommandParameter" Value="{x:Static WindowState.Normal}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Image>
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="Images/white_maximize.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding WindowState}" Value="{x:Static WindowState.Maximized}">
+                                    <Setter Property="Source" Value="Images/white_restore.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            <!--Close Button-->
+            <Button Grid.Column="3" Command="{Binding CloseWindowCommand}" CommandParameter="{x:Reference This}">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#C02A2A"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#F04A4A"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Image Source="Images/white_close.png"/>
+            </Button>
+        </Grid>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Background="{StaticResource MenuBarBackgroundColorBrush}">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type RadioButton}">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type RadioButton}">
-                                <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                                <Border Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}" Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="{Binding HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <ContentPresenter VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
                     <Setter Property="Background" Value="Transparent"/>
-                    <Setter Property="Foreground" Value="{StaticResource MainTextColorBrush}"/>
-                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
+                    <Setter Property="Padding" Value="25"/>
                     <Setter Property="Cursor" Value="Hand"/>
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="MinHeight" Value="50"/>
-                    <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"/>
+                    <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
 
                     <Style.Triggers>
 
@@ -94,7 +207,7 @@
 
         </StackPanel>
 
-        <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}"/>
+        <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentViewModel}"/>
 
     </Grid>
 </Window>
