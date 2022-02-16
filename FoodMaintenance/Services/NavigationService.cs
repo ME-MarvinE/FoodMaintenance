@@ -19,7 +19,7 @@ namespace FoodMaintenance.Services
         {
             Navigated?.Invoke(this, EventArgs.Empty);
         }
-        public void Navigate(BaseViewModel ViewModel)
+        public void Navigate(BaseViewModel? ViewModel)
         {
             if (CurrentViewModel != ViewModel)
             {
@@ -29,8 +29,5 @@ namespace FoodMaintenance.Services
             }
         }
         #endregion
-
-
-
     }
 }

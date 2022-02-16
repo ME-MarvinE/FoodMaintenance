@@ -2,6 +2,30 @@
     x:Class="FoodMaintenance.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:local="clr-namespace:FoodMaintenance">
-    <Application.Resources />
+
+    <Application.Resources>
+        <Color x:Key="MainBackgroundColor">#201E30</Color>
+        <SolidColorBrush x:Key="MainBackgroundColorBrush" Color="{StaticResource MainBackgroundColor}"/>
+        <Color x:Key="MainTextColor">White</Color>
+        <SolidColorBrush x:Key="MainTextColorBrush" Color="{StaticResource MainTextColor}"/>
+        <Color x:Key="MenuBarBackgroundColor">#1B192B</Color>
+        <SolidColorBrush x:Key="MenuBarBackgroundColorBrush" Color="{StaticResource MenuBarBackgroundColor}"/>
+        <Color x:Key="MenuBarButtonHover">#373547</Color>
+        <SolidColorBrush x:Key="MenuBarButtonHoverBrush" Color="{StaticResource MenuBarButtonHover}"/>
+        <Color x:Key="MenuBarButtonPressed">#413F51</Color>
+        <SolidColorBrush x:Key="MenuBarButtonPressedBrush" Color="{StaticResource MenuBarButtonPressed}"/>
+        <Color x:Key="SeparatorColor">#404040</Color>
+        <SolidColorBrush x:Key="SeparatorColorBrush" Color="{StaticResource SeparatorColor}"/>
+        <Color x:Key="OutlineColor">#707070</Color>
+        <SolidColorBrush x:Key="OutlineColorBrush" Color="{StaticResource OutlineColor}"/>
+
+
+
+        <System:Double x:Key="SmallFontSize">14</System:Double>
+        <System:Double x:Key="MediumFontSize">16</System:Double>
+        <System:Double x:Key="LargeFontSize">18</System:Double>
+    </Application.Resources>
+    
 </Application>
