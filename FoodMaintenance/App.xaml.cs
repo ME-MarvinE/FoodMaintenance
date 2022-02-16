@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FoodMaintenance.Interfaces;
+using FoodMaintenance.Services;
+using FoodMaintenance.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +16,23 @@ namespace FoodMaintenance
     /// </summary>
     public partial class App : Application
     {
+        #region Properties
+        private INavigationService NavigationService { get; } = new NavigationService();
+        #endregion
+
+        #region Methods
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainViewModel(NavigationService)
+            };
+
+            MainWindow.Show();
+            MainWindow.Show();
+
+            base.OnStartup(e);
+        }
+        #endregion
     }
 }
