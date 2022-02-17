@@ -29,7 +29,6 @@ namespace FoodMaintenance
             };
 
             MainWindow.Show();
-            MainWindow.Show();
 
             base.OnStartup(e);
         }
