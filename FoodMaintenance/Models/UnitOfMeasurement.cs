@@ -1,16 +1,19 @@
-﻿using System;
+﻿using SQLite;
+using SQLiteNetExtensions.Attributes;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoodMaintenance.Models
 {
-    public class UnitOfMeasurement : BaseObservableModel
+    [Table("UnitsOfMeasurement")]
+    public class UnitOfMeasurement
     {
         #region Properties
+        [PrimaryKey, AutoIncrement, NotNull]
         public int Id { get; set; }
+        [NotNull]
         public string? Name { get; set; }
+        [OneToMany]
+        public List<ProductDTO>? Products { get; set; }
         #endregion
     }
 }

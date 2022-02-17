@@ -1,18 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SQLite;
+using SQLiteNetExtensions.Attributes;
 
 namespace FoodMaintenance.Models
 {
-    public class Product : BaseObservableModel
+    [Table("Products")]
+    public class Product
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public int Type { get; set; }
+        #region Properties
+        [PrimaryKey, AutoIncrement, NotNull]
+        public int Id { get; set; }
+        [ForeignKey(typeof(ProductTypeDTO)), NotNull]
+        public int TypeId { get; set; }
+        [ManyToOne]
+        public ProductTypeDTO? Type { get; set; }
+        [NotNull]
         public int MinStockQuantity { get; set; }
-        public UnitOfMeasurement UnitOfMeasurement { get; set; }
+        [ForeignKey(typeof(UnitOfMeasurementDTO)), NotNull]
+        public int UnitOfMeasurementId { get; set; }
+        [ManyToOne]
+        public UnitOfMeasurementDTO? UnitOfMeasurement { get; set; }
+        [NotNull]
         public bool IsActive { get; set; }
+        #endregion
     }
 }
