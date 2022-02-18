@@ -44,5 +44,36 @@
         <Button Margin="0,10,0,0" Content="Delete" Command="{Binding DeleteUnitOfMeasurementCommand}"/>
 
         <Button Margin="0,10,0,0" Content="Delete All Units Of Measurement" Command="{Binding DeleteAllUnitsOfMeasurementCommand}"/>
+
+        <DataGrid MaxHeight="300" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="50,30,50,0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AlternatingRowBackground="#C0C0C0" ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding SelectedProductType}"/>
+        <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="RowEditEnding">
+                    <i:InvokeCommandAction Command="{Binding RowEditEndingCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+        <!--</DataGrid>-->
+
+        <TextBlock Text="Add New"/>
+        <TextBox Text="{Binding AddProductTypeName}"/>
+        <Button Content="Add" Command="{Binding AddProductTypeCommand}"/>
+
+        <TextBlock Text="Selected"/>
+        <TextBox Text="{Binding SelectedProductType.Name}">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedProductType}" Value="{x:Null}">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <Button Content="Update" Command="{Binding UpdateProductTypeCommand}"/>
+
+        <Button Margin="0,10,0,0" Content="Delete" Command="{Binding DeleteProductTypeCommand}"/>
+
+        <Button Margin="0,10,0,0" Content="Delete All Product Types" Command="{Binding DeleteAllProductTypesCommand}"/>
     </StackPanel>
 </UserControl>

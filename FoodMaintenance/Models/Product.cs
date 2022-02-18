@@ -9,7 +9,7 @@ namespace FoodMaintenance.Models
         #region Properties
         [PrimaryKey, AutoIncrement, NotNull]
         public int Id { get; set; }
-        [ForeignKey(typeof(ProductTypeDTO)), NotNull]
+        [ForeignKey(typeof(ProductType)), NotNull]
         public int TypeId { get; set; }
         [ManyToOne(CascadeOperations = CascadeOperation.All)]
         public ProductType? Type { get; set; }

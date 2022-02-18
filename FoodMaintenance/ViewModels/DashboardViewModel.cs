@@ -15,17 +15,24 @@ namespace FoodMaintenance.ViewModels
 
         #region Properties
         public List<UnitOfMeasurementDTO> UnitsOfMeasurement { get; set; } = new List<UnitOfMeasurementDTO>();
+        public List<ProductTypeDTO> ProductTypes { get; set; } = new List<ProductTypeDTO>();
         public UnitOfMeasurementDTO? SelectedUnitOfMeasurement { get; set; }
+        public ProductTypeDTO? SelectedProductType { get; set; }
         public string? AddUnitOfMeasurementName { get; set; }
+        public string? AddProductTypeName { get; set; }
         #endregion
 
         #region Commands
+        public ICommand GetProductTypesCommand { get; set; }
+        public ICommand AddProductTypeCommand { get; set; }
+        public ICommand UpdateProductTypeCommand { get; set; }
+        public ICommand DeleteProductTypeCommand { get; set; }
+        public ICommand DeleteAllProductTypesCommand { get; set; }
         public ICommand GetUnitsOfMeasurementCommand { get; set; }
         public ICommand AddUnitOfMeasurementCommand { get; set; }
         public ICommand UpdateUnitOfMeasurementCommand { get; set; }
         public ICommand DeleteUnitOfMeasurementCommand { get; set; }
         public ICommand DeleteAllUnitsOfMeasurementCommand { get; set; }
-
         #endregion
 
         #region Constructors
@@ -33,6 +40,11 @@ namespace FoodMaintenance.ViewModels
             : base(NavigationService)
         {
             //Didn't use AsyncRelayCommand because it eats up exceptions.
+            GetProductTypesCommand = new RelayCommand(async () => { await GetProductTypes(); });
+            AddProductTypeCommand = new RelayCommand(async () => { await AddProductType(); });
+            UpdateProductTypeCommand = new RelayCommand(async () => { await UpdateProductType(); });
+            DeleteProductTypeCommand = new RelayCommand(async () => { await DeleteProductType(); });
+            DeleteAllProductTypesCommand = new RelayCommand(async () => { await DeleteAllProductTypes(); });
             GetUnitsOfMeasurementCommand = new RelayCommand(async () => { await GetUnitsOfMeasurement(); });
             AddUnitOfMeasurementCommand = new RelayCommand(async () => { await AddUnitOfMeasurement(); });
             UpdateUnitOfMeasurementCommand = new RelayCommand(async () => { await UpdateUnitOfMeasurement(); });
@@ -45,6 +57,40 @@ namespace FoodMaintenance.ViewModels
         #endregion
 
         #region Methods
+        public async Task GetProductTypes()
+        {
+            ProductTypes = await _DbContext.GetProductTypes();
+        }
+        public async Task AddProductType()
+        {
+            await _DbContext.AddProductType(new ProductTypeDTO() { Name = AddProductTypeName });
+
+            AddProductTypeName = "";
+            await GetProductTypes();
+        }
+        public async Task UpdateProductType()
+        {
+            if (SelectedProductType != null)
+            {
+                await _DbContext.UpdateProductType(SelectedProductType);
+            }
+
+            await GetProductTypes();
+        }
+        public async Task DeleteProductType()
+        {
+            if (SelectedProductType != null)
+            {
+                await _DbContext.DeleteProductType(SelectedProductType.Id);
+            }
+
+            await GetProductTypes();
+        }
+        public async Task DeleteAllProductTypes()
+        {
+            await _DbContext.DeleteAllProductTypes();
+            await GetProductTypes();
+        }
         public async Task GetUnitsOfMeasurement()
         {
             UnitsOfMeasurement = await _DbContext.GetUnitsOfMeasurement();
