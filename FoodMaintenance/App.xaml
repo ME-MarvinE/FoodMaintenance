@@ -27,6 +27,8 @@
 
         <Color x:Key="MainButtonColor">#404050</Color>
         <SolidColorBrush x:Key="MainButtonColorBrush" Color="{StaticResource MainButtonColor}"/>
+        <Color x:Key="MainButtonForegroundColor">White</Color>
+        <SolidColorBrush x:Key="MainButtonForegroundColorBrush" Color="{StaticResource MainButtonForegroundColor}"/>
         <Color x:Key="MainButtonHoverColor">#5A5A6A</Color>
         <SolidColorBrush x:Key="MainButtonHoverColorBrush" Color="{StaticResource MainButtonHoverColor}"/>
         <Color x:Key="MainButtonBadHoverColor">#C02A2A</Color>
@@ -41,6 +43,11 @@
         <Color x:Key="WindowButtonPressedColor">#009FAF</Color>
         <SolidColorBrush x:Key="WindowButtonPressedColorBrush" Color="{StaticResource WindowButtonPressedColor}"/>
 
+        <Color x:Key="MainInputColor">#303030</Color>
+        <SolidColorBrush x:Key="MainInputColorBrush" Color="{StaticResource MainInputColor}"/>
+        <Color x:Key="MainInputForegroundColor">White</Color>
+        <SolidColorBrush x:Key="MainInputForegroundColorBrush" Color="{StaticResource MainInputForegroundColor}"/>
+
         <System:Double x:Key="Heading1FontSize">28</System:Double>
         <System:Double x:Key="Heading2FontSize">20</System:Double>
         <System:Double x:Key="Heading3FontSize">16</System:Double>
@@ -48,7 +55,7 @@
 
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="{StaticResource MainButtonColorBrush}"/>
-            <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource MainButtonForegroundColorBrush}"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -84,6 +91,11 @@
                     <Setter Property="Background" Value="{StaticResource MainButtonBadPressedColorBrush}"/>
                 </Trigger>
             </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{StaticResource MainInputColorBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource MainInputForegroundColorBrush}"/>
         </Style>
 
     </Application.Resources>
