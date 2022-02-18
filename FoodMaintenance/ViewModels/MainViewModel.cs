@@ -1,4 +1,5 @@
 ﻿using FoodMaintenance.Interfaces;
+using FoodMaintenance.Models;
 using Microsoft.Toolkit.Mvvm.Input;
 using System.Windows;
 using System.Windows.Input;
@@ -7,6 +8,10 @@ namespace FoodMaintenance.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
+        #region Fields
+        private readonly DbContext _DbContext;
+        #endregion
+
         #region Properties
         public WindowState WindowState { get; set; } = WindowState.Maximized;
         #endregion
@@ -19,13 +24,14 @@ namespace FoodMaintenance.ViewModels
         #endregion
 
         #region Constructors
-        public MainViewModel(INavigationService NavigationService)
+        public MainViewModel(INavigationService NavigationService, DbContext DbContext)
             :base(NavigationService)
         {
             ShowDashboardCommand = new RelayCommand(ShowDashboard);
             ShowAddProductCommand = new RelayCommand(ShowAddProduct);
             ChangeWindowStateCommand = new RelayCommand<WindowState>(ChangeWindowState);
             CloseWindowCommand = new RelayCommand<Window?>(CloseWindow);
+            _DbContext = DbContext;
             ShowDashboard();
         }
         #endregion
@@ -33,7 +39,7 @@ namespace FoodMaintenance.ViewModels
         #region Methods
         public void ShowDashboard()
         {
-            NavigationService.Navigate(new DashboardViewModel(NavigationService));
+            NavigationService.Navigate(new DashboardViewModel(NavigationService, _DbContext));
         }
         public void ShowAddProduct()
         {

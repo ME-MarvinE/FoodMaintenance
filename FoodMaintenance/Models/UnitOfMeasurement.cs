@@ -12,8 +12,8 @@ namespace FoodMaintenance.Models
         public int Id { get; set; }
         [NotNull]
         public string? Name { get; set; }
-        [OneToMany]
-        public List<ProductDTO>? Products { get; set; }
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<Product>? Products { get; set; }
         #endregion
     }
 }

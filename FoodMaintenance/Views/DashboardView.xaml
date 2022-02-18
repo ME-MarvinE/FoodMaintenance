@@ -4,9 +4,45 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FoodMaintenance.Views"
-             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock Text="Dashboard" FontSize="18"/>
-    </Grid>
+    <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
+            </Style>
+        </StackPanel.Resources>
+        
+        <DataGrid MaxHeight="300" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="50,30,50,0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AlternatingRowBackground="#C0C0C0" ItemsSource="{Binding UnitsOfMeasurement}" SelectedItem="{Binding SelectedUnitOfMeasurement}"/>
+        <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="RowEditEnding">
+                    <i:InvokeCommandAction Command="{Binding RowEditEndingCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+        <!--</DataGrid>-->
+
+        <TextBlock Text="Add New"/>
+        <TextBox Text="{Binding AddUnitOfMeasurementName}"/>
+        <Button Content="Add" Command="{Binding AddUnitOfMeasurementCommand}"/>
+
+        <TextBlock Text="Selected"/>
+        <TextBox Text="{Binding SelectedUnitOfMeasurement.Name}">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="IsEnabled" Value="True"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedUnitOfMeasurement}" Value="{x:Null}">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <Button Content="Update" Command="{Binding UpdateUnitOfMeasurementCommand}"/>
+        
+        <Button Margin="0,10,0,0" Content="Delete" Command="{Binding DeleteUnitOfMeasurementCommand}"/>
+
+        <Button Margin="0,10,0,0" Content="Delete All Units Of Measurement" Command="{Binding DeleteAllUnitsOfMeasurementCommand}"/>
+    </StackPanel>
 </UserControl>

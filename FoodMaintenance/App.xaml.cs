@@ -1,12 +1,7 @@
 ﻿using FoodMaintenance.Interfaces;
+using FoodMaintenance.Models;
 using FoodMaintenance.Services;
 using FoodMaintenance.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace FoodMaintenance
@@ -16,8 +11,9 @@ namespace FoodMaintenance
     /// </summary>
     public partial class App : Application
     {
-        #region Properties
-        private INavigationService NavigationService { get; } = new NavigationService();
+        #region Fields
+        private readonly INavigationService _NavigationService = new NavigationService();
+        private readonly DbContext _DbContext = new DbContext("FoodMaintenance.db");
         #endregion
 
         #region Methods
@@ -25,7 +21,7 @@ namespace FoodMaintenance
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(NavigationService)
+                DataContext = new MainViewModel(_NavigationService, _DbContext)
             };
 
             MainWindow.Show();

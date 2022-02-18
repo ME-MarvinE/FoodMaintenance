@@ -11,14 +11,14 @@ namespace FoodMaintenance.Models
         public int Id { get; set; }
         [ForeignKey(typeof(ProductTypeDTO)), NotNull]
         public int TypeId { get; set; }
-        [ManyToOne]
-        public ProductTypeDTO? Type { get; set; }
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
+        public ProductType? Type { get; set; }
         [NotNull]
         public int MinStockQuantity { get; set; }
-        [ForeignKey(typeof(UnitOfMeasurementDTO)), NotNull]
+        [ForeignKey(typeof(UnitOfMeasurement)), NotNull]
         public int UnitOfMeasurementId { get; set; }
-        [ManyToOne]
-        public UnitOfMeasurementDTO? UnitOfMeasurement { get; set; }
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
+        public UnitOfMeasurement? UnitOfMeasurement { get; set; }
         [NotNull]
         public bool IsActive { get; set; }
         #endregion
