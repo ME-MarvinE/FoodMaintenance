@@ -16,7 +16,7 @@ namespace FoodMaintenance.Models
         [ManyToOne(CascadeOperations = CascadeOperation.All)]
         public ProductType? Type { get; set; }
         [NotNull]
-        public int MinStockQuantity { get; set; }
+        public float MinStockQuantity { get; set; }
         [ForeignKey(typeof(UnitOfMeasurement)), NotNull]
         public int UnitOfMeasurementId { get; set; }
         [ManyToOne(CascadeOperations = CascadeOperation.All)]

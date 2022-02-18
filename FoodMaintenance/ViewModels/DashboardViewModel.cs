@@ -48,7 +48,7 @@ namespace FoodMaintenance.ViewModels
         public DashboardViewModel(INavigationService NavigationService, DbContext DbContext)
             : base(NavigationService)
         {
-            //Didn't use AsyncRelayCommand because it eats up exceptions.
+            //Didn't use AsyncRelayCommand because it eats exceptions.
             GetProductsCommand = new RelayCommand(async () => { await GetProducts(); });
             AddProductCommand = new RelayCommand(async () => { await AddProduct(); });
             UpdateProductCommand = new RelayCommand(async () => { await UpdateProduct(); });
