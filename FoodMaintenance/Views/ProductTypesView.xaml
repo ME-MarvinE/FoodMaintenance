@@ -20,10 +20,10 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="20">
 
-            <TextBlock
+            <Label
                 FontSize="{StaticResource Heading1FontSize}"
                 FontWeight="Bold"
-                Text="Product Types"/>
+                Content="Product Types"/>
 
             <DataGrid
                 Height="300"
@@ -59,15 +59,15 @@
 
                 <StackPanel Grid.Column="0" Margin="10,0,10,0">
 
-                    <TextBlock
+                    <Label
                         FontSize="{StaticResource Heading2FontSize}"
                         FontWeight="Bold"
-                        Text="Create"/>
+                        Content="Create"/>
 
-                    <TextBlock
+                    <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
-                        Text="Name"/>
+                        Content="Name"/>
                     <TextBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
@@ -94,15 +94,15 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <TextBlock
+                    <Label
                         FontSize="{StaticResource Heading2FontSize}"
                         FontWeight="Bold"
-                        Text="Update"/>
+                        Content="Update"/>
 
-                    <TextBlock
+                    <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
-                        Text="Name"/>
+                        Content="Name"/>
                     <TextBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
@@ -126,10 +126,10 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Margin="10,0,10,0">
-                    <TextBlock
+                    <Label
                         FontSize="{StaticResource Heading2FontSize}"
                         FontWeight="Bold"
-                        Text="Other"/>
+                        Content="Other"/>
 
                     <Button
                         Margin="0,30,0,0"

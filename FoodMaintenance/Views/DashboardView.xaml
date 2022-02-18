@@ -20,10 +20,10 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="20">
             
-            <TextBlock
+            <Label
                 FontSize="{StaticResource Heading1FontSize}"
                 FontWeight="Bold"
-                Text="Dashboard"/>
+                Content="Dashboard"/>
             
         </StackPanel>
     </ScrollViewer>

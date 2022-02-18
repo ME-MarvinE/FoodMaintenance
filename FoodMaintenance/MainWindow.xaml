@@ -107,14 +107,14 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock
+            <Label
                 Grid.Column="0"
                 Padding="15,0,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 FontSize="{x:Static SystemFonts.CaptionFontSize}"
                 Foreground="{StaticResource MainForegroundColorBrush}"
-                Text="{Binding Title, ElementName=This}"/>
+                Content="{Binding Title, ElementName=This}"/>
 
             <!--#region Minimize Button-->
             <Button

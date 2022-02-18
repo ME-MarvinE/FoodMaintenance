@@ -105,7 +105,7 @@
             <Setter Property="Foreground" Value="{StaticResource MainInputForegroundColorBrush}"/>
         </Style>
 
-        <Style TargetType="{x:Type TextBlock}">
+        <Style TargetType="{x:Type Label}">
             <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
         </Style>
 

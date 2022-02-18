@@ -20,10 +20,10 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="20">
 
-            <TextBlock
+            <Label
                 FontSize="{StaticResource Heading1FontSize}"
                 FontWeight="Bold"
-                Text="Products"/>
+                Content="Products"/>
 
             <DataGrid
                 Height="300"
@@ -51,7 +51,7 @@
                     <DataGridTemplateColumn Header="Type">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Type.Name}"/>
+                                <Label Content="{Binding Type.Name}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -59,7 +59,7 @@
                     <DataGridTemplateColumn Header="Unit Of Measurement">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding UnitOfMeasurement.Name}"/>
+                                <Label Content="{Binding UnitOfMeasurement.Name}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -76,24 +76,24 @@
 
                 <StackPanel Grid.Column="0" Margin="10,0,10,0">
 
-                    <TextBlock
+                    <Label
                         FontSize="{StaticResource Heading2FontSize}"
                         FontWeight="Bold"
-                        Text="Create"/>
+                        Content="Create"/>
 
-                    <TextBlock
+                    <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
-                        Text="Name"/>
+                        Content="Name"/>
                     <TextBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         Text="{Binding ProductToAdd.Name}"/>
 
-                    <TextBlock
+                    <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
-                        Text="Type"/>
+                        Content="Type"/>
                     <ComboBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
@@ -102,24 +102,24 @@
                         SelectedItem="{Binding ProductToAdd.Type}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
-                                <TextBlock Text="{Binding Name}"/>
+                                <Label Content="{Binding Name}"/>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
 
-                    <TextBlock
+                    <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
-                        Text="Minimum Stock Quantity"/>
+                        Content="Minimum Stock Quantity"/>
                     <TextBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         Text="{Binding ProductToAdd.MinStockQuantity}"/>
 
-                    <TextBlock
+                    <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
-                        Text="Unit Of Measurement"/>
+                        Content="Unit Of Measurement"/>
                     <ComboBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
@@ -128,7 +128,7 @@
                         SelectedItem="{Binding ProductToAdd.UnitOfMeasurement}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
-                                <TextBlock Text="{Binding Name}"/>
+                                <Label Content="{Binding Name}"/>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
@@ -161,24 +161,24 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <TextBlock
+                    <Label
                         FontSize="{StaticResource Heading2FontSize}"
                         FontWeight="Bold"
-                        Text="Update"/>
+                        Content="Update"/>
 
-                    <TextBlock
+                    <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
-                        Text="Name"/>
+                        Content="Name"/>
                     <TextBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         Text="{Binding SelectedProduct.Name}"/>
 
-                    <TextBlock
+                    <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
-                        Text="Type"/>
+                        Content="Type"/>
                     <ComboBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
@@ -187,24 +187,24 @@
                         SelectedItem="{Binding SelectedProduct.Type}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
-                                <TextBlock Text="{Binding Name}"/>
+                                <Label Content="{Binding Name}"/>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
 
-                    <TextBlock
+                    <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
-                        Text="Minimum Stock Quantity"/>
+                        Content="Minimum Stock Quantity"/>
                     <TextBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         Text="{Binding SelectedProduct.MinStockQuantity}"/>
 
-                    <TextBlock
+                    <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
-                        Text="Unit Of Measurement"/>
+                        Content="Unit Of Measurement"/>
                     <ComboBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
@@ -213,7 +213,7 @@
                         SelectedItem="{Binding SelectedProduct.UnitOfMeasurement}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
-                                <TextBlock Text="{Binding Name}"/>
+                                <Label Content="{Binding Name}"/>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
@@ -243,10 +243,10 @@
                 </StackPanel>
 
                 <StackPanel Grid.Column="2" Margin="10,0,10,0">
-                    <TextBlock
+                    <Label
                         FontSize="{StaticResource Heading2FontSize}"
                         FontWeight="Bold"
-                        Text="Other"/>
+                        Content="Other"/>
 
                     <Button
                         Margin="0,30,0,0"
