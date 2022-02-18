@@ -245,9 +245,7 @@
                 Content="Dashboard"
                 IsChecked="True"/>
 
-            <RadioButton
-                Command="{Binding ShowAddProductCommand}"
-                Content="Add Product"/>
+            <RadioButton Command="{Binding ShowAddProductCommand}" Content="Add Product"/>
 
         </StackPanel>
 

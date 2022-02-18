@@ -25,6 +25,17 @@
         <Color x:Key="OutlineColor">#707070</Color>
         <SolidColorBrush x:Key="OutlineColorBrush" Color="{StaticResource OutlineColor}"/>
 
+        <Color x:Key="MainButtonColor">#404050</Color>
+        <SolidColorBrush x:Key="MainButtonColorBrush" Color="{StaticResource MainButtonColor}"/>
+        <Color x:Key="MainButtonHoverColor">#5A5A6A</Color>
+        <SolidColorBrush x:Key="MainButtonHoverColorBrush" Color="{StaticResource MainButtonHoverColor}"/>
+        <Color x:Key="MainButtonBadHoverColor">#C02A2A</Color>
+        <SolidColorBrush x:Key="MainButtonBadHoverColorBrush" Color="{StaticResource MainButtonBadHoverColor}"/>
+        <Color x:Key="MainButtonBadPressedColor">#F04A4A</Color>
+        <SolidColorBrush x:Key="MainButtonBadPressedColorBrush" Color="{StaticResource MainButtonBadPressedColor}"/>
+        <Color x:Key="MainButtonPressedColor">#1080A0</Color>
+        <SolidColorBrush x:Key="MainButtonPressedColorBrush" Color="{StaticResource MainButtonPressedColor}"/>
+
         <Color x:Key="WindowButtonHoverColor">#373547</Color>
         <SolidColorBrush x:Key="WindowButtonHoverColorBrush" Color="{StaticResource WindowButtonHoverColor}"/>
         <Color x:Key="WindowButtonPressedColor">#009FAF</Color>
@@ -34,6 +45,46 @@
         <System:Double x:Key="Heading2FontSize">20</System:Double>
         <System:Double x:Key="Heading3FontSize">16</System:Double>
         <System:Double x:Key="Text1FontSize">14</System:Double>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource MainButtonColorBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                                    Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
+                                    HorizontalAlignment="{Binding HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalAlignment="{Binding VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
+                            <ContentPresenter HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource MainButtonHoverColorBrush}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{StaticResource MainButtonPressedColorBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
+        <Style x:Key="BadButton" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource MainButtonBadHoverColorBrush}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="{StaticResource MainButtonBadPressedColorBrush}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
     </Application.Resources>
 

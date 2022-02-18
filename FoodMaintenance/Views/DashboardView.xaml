@@ -266,14 +266,16 @@
                         Padding="10"
                         Command="{Binding DeleteProductCommand}"
                         Content="Delete Selected Product"
-                        FontSize="{StaticResource Text1FontSize}"/>
+                        FontSize="{StaticResource Text1FontSize}"
+                        Style="{StaticResource BadButton}"/>
 
                     <Button
                         Margin="0,15,0,0"
                         Padding="10"
                         Command="{Binding DeleteAllProductsCommand}"
                         Content="Delete All Products"
-                        FontSize="{StaticResource Text1FontSize}"/>
+                        FontSize="{StaticResource Text1FontSize}"
+                        Style="{StaticResource BadButton}"/>
                 </StackPanel>
             </Grid>
             <!--#endregion-->
@@ -395,14 +397,16 @@
                         Padding="10"
                         Command="{Binding DeleteProductTypeCommand}"
                         Content="Delete Selected Product Type"
-                        FontSize="{StaticResource Text1FontSize}"/>
+                        FontSize="{StaticResource Text1FontSize}"
+                        Style="{StaticResource BadButton}"/>
 
                     <Button
                         Margin="0,15,0,0"
                         Padding="10"
                         Command="{Binding DeleteAllProductTypesCommand}"
                         Content="Delete All Product Types"
-                        FontSize="{StaticResource Text1FontSize}"/>
+                        FontSize="{StaticResource Text1FontSize}"
+                        Style="{StaticResource BadButton}"/>
                 </StackPanel>
             </Grid>
             <!--#endregion-->
@@ -524,14 +528,16 @@
                         Padding="10"
                         Command="{Binding DeleteUnitOfMeasurementCommand}"
                         Content="Delete Selected Unit Of Measurement"
-                        FontSize="{StaticResource Text1FontSize}"/>
+                        FontSize="{StaticResource Text1FontSize}"
+                        Style="{StaticResource BadButton}"/>
 
                     <Button
                         Margin="0,15,0,0"
                         Padding="10"
                         Command="{Binding DeleteAllUnitsOfMeasurementCommand}"
                         Content="Delete All Units Of Measurement"
-                        FontSize="{StaticResource Text1FontSize}"/>
+                        FontSize="{StaticResource Text1FontSize}"
+                        Style="{StaticResource BadButton}"/>
                 </StackPanel>
             </Grid>
             <!--#endregion-->
