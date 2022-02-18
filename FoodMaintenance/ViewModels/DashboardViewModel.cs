@@ -41,7 +41,7 @@ namespace FoodMaintenance.ViewModels
         public ICommand UpdateUnitOfMeasurementCommand { get; set; }
         public ICommand DeleteUnitOfMeasurementCommand { get; set; }
         public ICommand DeleteAllUnitsOfMeasurementCommand { get; set; }
-        public ICommand LoadedCommand { get; set; }
+        public ICommand ReloadDataCommand { get; set; }
         #endregion
 
         #region Constructors
@@ -64,14 +64,14 @@ namespace FoodMaintenance.ViewModels
             UpdateUnitOfMeasurementCommand = new RelayCommand(async () => { await UpdateUnitOfMeasurement(); });
             DeleteUnitOfMeasurementCommand = new RelayCommand(async () => { await DeleteUnitOfMeasurement(); });
             DeleteAllUnitsOfMeasurementCommand = new RelayCommand(async () => { await DeleteAllUnitsOfMeasurement(); });
-            LoadedCommand = new RelayCommand(async () => { await ReloadAllData(); });
+            ReloadDataCommand = new RelayCommand(async () => { await ReloadData(); });
 
             _DbContext = DbContext;
         }
         #endregion
 
         #region Methods
-        public async Task ReloadAllData()
+        public async Task ReloadData()
         {
             await GetProducts();
             await GetProductTypes();
@@ -85,7 +85,7 @@ namespace FoodMaintenance.ViewModels
         {
             await _DbContext.AddProduct(ProductToAdd);
             ProductToAdd = new ProductDTO();
-            await GetProducts();
+            await ReloadData();
         }
         public async Task UpdateProduct()
         {
@@ -94,7 +94,7 @@ namespace FoodMaintenance.ViewModels
                 await _DbContext.UpdateProduct(SelectedProduct);
             }
 
-            await ReloadAllData();
+            await ReloadData();
         }
         public async Task DeleteProduct()
         {
@@ -103,12 +103,12 @@ namespace FoodMaintenance.ViewModels
                 await _DbContext.DeleteProduct(SelectedProduct.Id);
             }
 
-            await ReloadAllData();
+            await ReloadData();
         }
         public async Task DeleteAllProducts()
         {
             await _DbContext.DeleteAllProducts();
-            await ReloadAllData();
+            await ReloadData();
         }
         public async Task GetProductTypes()
         {
@@ -119,7 +119,7 @@ namespace FoodMaintenance.ViewModels
             await _DbContext.AddProductType(ProductTypeToAdd);
             ProductTypeToAdd = new ProductTypeDTO();
 
-            await ReloadAllData();
+            await ReloadData();
         }
         public async Task UpdateProductType()
         {
@@ -128,7 +128,7 @@ namespace FoodMaintenance.ViewModels
                 await _DbContext.UpdateProductType(SelectedProductType);
             }
 
-            await ReloadAllData();
+            await ReloadData();
         }
         public async Task DeleteProductType()
         {
@@ -137,12 +137,12 @@ namespace FoodMaintenance.ViewModels
                 await _DbContext.DeleteProductType(SelectedProductType.Id);
             }
 
-            await ReloadAllData();
+            await ReloadData();
         }
         public async Task DeleteAllProductTypes()
         {
             await _DbContext.DeleteAllProductTypes();
-            await ReloadAllData();
+            await ReloadData();
         }
         public async Task GetUnitsOfMeasurement()
         {
@@ -153,7 +153,7 @@ namespace FoodMaintenance.ViewModels
             await _DbContext.AddUnitOfMeasurement(UnitOfMeasurementToAdd);
             UnitOfMeasurementToAdd = new UnitOfMeasurementDTO();
 
-            await ReloadAllData();
+            await ReloadData();
         }
         public async Task UpdateUnitOfMeasurement()
         {
@@ -162,7 +162,7 @@ namespace FoodMaintenance.ViewModels
                 await _DbContext.UpdateUnitOfMeasurement(SelectedUnitOfMeasurement);
             }
 
-            await ReloadAllData();
+            await ReloadData();
         }
         public async Task DeleteUnitOfMeasurement()
         {
@@ -171,12 +171,12 @@ namespace FoodMaintenance.ViewModels
                 await _DbContext.DeleteUnitOfMeasurement(SelectedUnitOfMeasurement.Id);
             }
 
-            await ReloadAllData();
+            await ReloadData();
         }
         public async Task DeleteAllUnitsOfMeasurement()
         {
             await _DbContext.DeleteAllUnitsOfMeasurement();
-            await ReloadAllData();
+            await ReloadData();
         }
         #endregion
     }

@@ -7,18 +7,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:FoodMaintenance"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="This"
     Title="Food Maintenance"
     Width="800"
     Height="550"
     Background="{StaticResource MainBackgroundColorBrush}"
-    Name="This"
-    mc:Ignorable="d"
-    WindowStyle="None"
+    WindowStartupLocation="CenterScreen"
     WindowState="{Binding WindowState}"
-    WindowStartupLocation="CenterScreen">
+    WindowStyle="None"
+    mc:Ignorable="d">
 
     <Window.Style>
-        <Style TargetType="{x:Type Window}" BasedOn="{StaticResource {x:Type Window}}">
+        <Style BasedOn="{StaticResource {x:Type Window}}" TargetType="{x:Type Window}">
             <Setter Property="BorderThickness" Value="0"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding WindowState}" Value="{x:Static WindowState.Maximized}">
@@ -30,10 +30,10 @@
 
     <WindowChrome.WindowChrome>
         <WindowChrome
-            ResizeBorderThickness="12"
             CaptionHeight="25"
             CornerRadius="0"
-            GlassFrameThickness="0"/>
+            GlassFrameThickness="0"
+            ResizeBorderThickness="12"/>
     </WindowChrome.WindowChrome>
 
     <Grid>
@@ -56,7 +56,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Background="{StaticResource TitleBarBackgroundColorBrush}">
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Background="{StaticResource TitleBarBackgroundColorBrush}">
             <Grid.Resources>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="Transparent"/>
@@ -68,8 +72,12 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
-                                <Border Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}" Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="{Binding HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}">
-                                    <ContentPresenter VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <Border
+                                    Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
+                                    HorizontalAlignment="{Binding HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalAlignment="{Binding VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <ContentPresenter HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
@@ -94,16 +102,26 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Column="0" Text="{Binding Title, ElementName=This}" Foreground="{StaticResource MainForegroundColorBrush}" FontSize="{x:Static SystemFonts.CaptionFontSize}" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="15,0,0,0"/>
+            <TextBlock
+                Grid.Column="0"
+                Padding="15,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                FontSize="{x:Static SystemFonts.CaptionFontSize}"
+                Foreground="{StaticResource MainForegroundColorBrush}"
+                Text="{Binding Title, ElementName=This}"/>
 
-            <!--Minimize Button-->
-            <Button Grid.Column="1" Command="{Binding ChangeWindowStateCommand}" CommandParameter="{x:Static WindowState.Minimized}">
+            <!--  Minimize Button  -->
+            <Button
+                Grid.Column="1"
+                Command="{Binding ChangeWindowStateCommand}"
+                CommandParameter="{x:Static WindowState.Minimized}">
                 <Image Source="Images/white_minimize.png"/>
             </Button>
-            <!--Maximize Button-->
+            <!--  Maximize Button  -->
             <Button Grid.Column="2" Command="{Binding ChangeWindowStateCommand}">
                 <Button.Style>
-                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                    <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
                         <Setter Property="CommandParameter" Value="{x:Static WindowState.Maximized}"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding WindowState}" Value="{x:Static WindowState.Maximized}">
@@ -125,10 +143,13 @@
                     </Image.Style>
                 </Image>
             </Button>
-            <!--Close Button-->
-            <Button Grid.Column="3" Command="{Binding CloseWindowCommand}" CommandParameter="{x:Reference This}">
+            <!--  Close Button  -->
+            <Button
+                Grid.Column="3"
+                Command="{Binding CloseWindowCommand}"
+                CommandParameter="{x:Reference This}">
                 <Button.Style>
-                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                    <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background">
@@ -152,14 +173,21 @@
             </Button>
         </Grid>
 
-        <StackPanel Grid.Column="0" Grid.Row="1" Background="{StaticResource MenuBarBackgroundColorBrush}">
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            Background="{StaticResource MenuBarBackgroundColorBrush}">
             <StackPanel.Resources>
                 <Style TargetType="{x:Type RadioButton}">
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type RadioButton}">
-                                <Border Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}" Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="{Binding HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}">
-                                    <ContentPresenter VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <Border
+                                    Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
+                                    HorizontalAlignment="{Binding HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                    VerticalAlignment="{Binding VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                    Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <ContentPresenter HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"/>
                                 </Border>
                             </ControlTemplate>
                         </Setter.Value>
@@ -170,7 +198,8 @@
                     <Setter Property="Cursor" Value="Hand"/>
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
+                    <Setter Property="FontSize" Value="{StaticResource Heading3FontSize}"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
 
                     <Style.Triggers>
 
@@ -198,12 +227,13 @@
                             <Setter Property="Background">
                                 <Setter.Value>
                                     <LinearGradientBrush>
-                                        <GradientStop Color="#00FFCF" Offset="0"/>
-                                        <GradientStop Color="#00CFAF" Offset="1"/>
+                                        <GradientStop Offset="0" Color="#00FFCF"/>
+                                        <GradientStop Offset="1" Color="#00CFAF"/>
                                     </LinearGradientBrush>
                                 </Setter.Value>
                             </Setter>
                             <Setter Property="Cursor" Value="Arrow"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
                         </Trigger>
 
                     </Style.Triggers>
@@ -211,13 +241,21 @@
 
             </StackPanel.Resources>
 
-            <RadioButton Command="{Binding ShowDashboardCommand}" Content="Dashboard" IsChecked="True"/>
+            <RadioButton
+                Command="{Binding ShowDashboardCommand}"
+                Content="Dashboard"
+                IsChecked="True"/>
 
-            <RadioButton Command="{Binding ShowAddProductCommand}" Content="Add Product"/>
+            <RadioButton
+                Command="{Binding ShowAddProductCommand}"
+                Content="Add Product"/>
 
         </StackPanel>
 
-        <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentViewModel}"/>
+        <ContentControl
+            Grid.Row="1"
+            Grid.Column="1"
+            Content="{Binding CurrentViewModel}"/>
 
     </Grid>
 </Window>

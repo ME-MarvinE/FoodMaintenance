@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:FoodMaintenance">
 
     <Application.Resources>
+
         <Color x:Key="MainBackgroundColor">#201E30</Color>
         <SolidColorBrush x:Key="MainBackgroundColorBrush" Color="{StaticResource MainBackgroundColor}"/>
         <Color x:Key="MainForegroundColor">White</Color>
@@ -18,21 +19,22 @@
         <SolidColorBrush x:Key="MenuBarButtonHoverBrush" Color="{StaticResource MenuBarButtonHover}"/>
         <Color x:Key="MenuBarButtonPressed">#413F51</Color>
         <SolidColorBrush x:Key="MenuBarButtonPressedBrush" Color="{StaticResource MenuBarButtonPressed}"/>
-        
+
         <Color x:Key="SeparatorColor">#404040</Color>
         <SolidColorBrush x:Key="SeparatorColorBrush" Color="{StaticResource SeparatorColor}"/>
         <Color x:Key="OutlineColor">#707070</Color>
         <SolidColorBrush x:Key="OutlineColorBrush" Color="{StaticResource OutlineColor}"/>
-        
+
         <Color x:Key="WindowButtonHoverColor">#373547</Color>
         <SolidColorBrush x:Key="WindowButtonHoverColorBrush" Color="{StaticResource WindowButtonHoverColor}"/>
         <Color x:Key="WindowButtonPressedColor">#009FAF</Color>
         <SolidColorBrush x:Key="WindowButtonPressedColorBrush" Color="{StaticResource WindowButtonPressedColor}"/>
 
+        <System:Double x:Key="Heading1FontSize">28</System:Double>
+        <System:Double x:Key="Heading2FontSize">20</System:Double>
+        <System:Double x:Key="Heading3FontSize">16</System:Double>
+        <System:Double x:Key="Text1FontSize">14</System:Double>
 
-        <System:Double x:Key="SmallFontSize">14</System:Double>
-        <System:Double x:Key="MediumFontSize">16</System:Double>
-        <System:Double x:Key="LargeFontSize">18</System:Double>
     </Application.Resources>
-    
+
 </Application>
