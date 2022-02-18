@@ -25,6 +25,16 @@ namespace FoodMaintenance.Models
 
             MapperConfiguration MapperConfig = new MapperConfiguration(config =>
             {
+                config.CreateMap<Product, ProductDTO>()
+                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                    .ForMember(dest => dest.Type, opt => opt.MapFrom((src, dest, member, context) => context.Mapper.Map<ProductType?, ProductTypeDTO?>(src.Type)))
+                    .ForMember(dest => dest.MinStockQuantity, opt => opt.MapFrom(src => src.MinStockQuantity))
+                    .ForMember(dest => dest.UnitOfMeasurement, opt => opt.MapFrom((src, dest, member, context) => context.Mapper.Map<UnitOfMeasurement?, UnitOfMeasurementDTO?>(src.UnitOfMeasurement)))
+                    .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => src.IsActive));
+                config.CreateMap<ProductDTO, Product>()
+                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
                 config.CreateMap<ProductType, ProductTypeDTO>()
                     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
@@ -50,6 +60,50 @@ namespace FoodMaintenance.Models
             await _Con.CreateTableAsync<ProductType>();
             await _Con.CreateTableAsync<UnitOfMeasurement>();
             return _Con;
+        }
+        public async Task<List<ProductDTO>> GetProducts()
+        {
+            SQLiteAsyncConnection Con = await GetConnection();
+
+            List<Product> Products = await Con.GetAllWithChildrenAsync<Product>();
+            List<ProductDTO> ProductsDTO;
+
+            ProductsDTO = _Mapper.Map<List<Product>, List<ProductDTO>>(Products);
+
+            return ProductsDTO;
+        }
+        public async Task<ProductDTO?> GetProduct(int Id)
+        {
+            SQLiteAsyncConnection Con = await GetConnection();
+
+            Product? Product = await Con.GetWithChildrenAsync<Product?>(Id);
+            return _Mapper.Map<Product?, ProductDTO>(Product);
+        }
+        public async Task AddProduct(ProductDTO ProductDTO)
+        {
+            SQLiteAsyncConnection Con = await GetConnection();
+
+            Product Product = _Mapper.Map<ProductDTO, Product>(ProductDTO);
+            await Con.InsertWithChildrenAsync(Product);
+        }
+        public async Task UpdateProduct(ProductDTO ProductDTO)
+        {
+            SQLiteAsyncConnection Con = await GetConnection();
+
+            Product Product = _Mapper.Map<ProductDTO, Product>(ProductDTO);
+            await Con.UpdateWithChildrenAsync(Product);
+        }
+        public async Task DeleteProduct(int Id)
+        {
+            SQLiteAsyncConnection Con = await GetConnection();
+
+            await Con.DeleteAsync<Product>(Id);
+        }
+        public async Task DeleteAllProducts()
+        {
+            SQLiteAsyncConnection Con = await GetConnection();
+
+            await Con.DeleteAllAsync<Product>();
         }
         public async Task<List<ProductTypeDTO>> GetProductTypes()
         {

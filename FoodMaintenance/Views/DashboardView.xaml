@@ -4,76 +4,213 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FoodMaintenance.Views"
+             xmlns:Models="clr-namespace:FoodMaintenance.Models"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <StackPanel.Resources>
-            <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
-            </Style>
-        </StackPanel.Resources>
-        
-        <DataGrid MaxHeight="300" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="50,30,50,0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AlternatingRowBackground="#C0C0C0" ItemsSource="{Binding UnitsOfMeasurement}" SelectedItem="{Binding SelectedUnitOfMeasurement}"/>
-        <!--<i:Interaction.Triggers>
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <ScrollViewer>
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
+                </Style>
+                <Style TargetType="{x:Type CheckBox}">
+                    <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <DataGrid Margin="50,30,50,0" MaxHeight="300" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AlternatingRowBackground="#C0C0C0" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}"/>
+            <!--<i:Interaction.Triggers>
                 <i:EventTrigger EventName="RowEditEnding">
                     <i:InvokeCommandAction Command="{Binding RowEditEndingCommand}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>-->
-        <!--</DataGrid>-->
+            <!--</DataGrid>-->
 
-        <TextBlock Text="Add New"/>
-        <TextBox Text="{Binding AddUnitOfMeasurementName}"/>
-        <Button Content="Add" Command="{Binding AddUnitOfMeasurementCommand}"/>
+            <TextBlock Text="Add New"/>
+            <TextBox Text="{Binding NewProductName}"/>
 
-        <TextBlock Text="Selected"/>
-        <TextBox Text="{Binding SelectedUnitOfMeasurement.Name}">
-            <TextBox.Style>
-                <Style TargetType="{x:Type TextBox}">
-                    <Setter Property="IsEnabled" Value="True"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding SelectedUnitOfMeasurement}" Value="{x:Null}">
-                            <Setter Property="IsEnabled" Value="False"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
-        <Button Content="Update" Command="{Binding UpdateUnitOfMeasurementCommand}"/>
-        
-        <Button Margin="0,10,0,0" Content="Delete" Command="{Binding DeleteUnitOfMeasurementCommand}"/>
+            <TextBlock Text="Type"/>
+            <ComboBox ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding NewProductType}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
-        <Button Margin="0,10,0,0" Content="Delete All Units Of Measurement" Command="{Binding DeleteAllUnitsOfMeasurementCommand}"/>
+            <TextBox Text="{Binding NewProductMinStockQuantity}"/>
 
-        <DataGrid MaxHeight="300" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="50,30,50,0" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AlternatingRowBackground="#C0C0C0" ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding SelectedProductType}"/>
-        <!--<i:Interaction.Triggers>
+            <TextBlock Text="Unit Of Measurement"/>
+            <ComboBox ItemsSource="{Binding UnitsOfMeasurement}" SelectedItem="{Binding NewProductUnitOfMeasurement}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <CheckBox Content="IsActive" IsChecked="{Binding NewProductIsActive}"/>
+            <Button Content="Add" Command="{Binding AddProductCommand}"/>
+
+            <TextBlock Text="Update Selected"/>
+            <TextBox Text="{Binding SelectedProduct.Name}">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedProduct}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+            <TextBlock Text="Type"/>
+            <ComboBox ItemsSource="{Binding ProductTypes}">
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
+                <ComboBox.Style>
+                    <Style TargetType="{x:Type ComboBox}">
+                        <Setter Property="IsEditable" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedProduct}" Value="{x:Null}">
+                                <Setter Property="IsEditable" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+
+            </ComboBox>
+
+            <TextBox Text="{Binding SelectedProduct.MinStockQuantity}">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedProduct}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+
+            <TextBlock Text="Unit Of Measurement"/>
+            <ComboBox ItemsSource="{Binding UnitsOfMeasurement}">
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+
+                <ComboBox.Style>
+                    <Style TargetType="{x:Type ComboBox}">
+                        <Setter Property="IsEditable" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedProduct}" Value="{x:Null}">
+                                <Setter Property="IsEditable" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+
+            </ComboBox>
+
+            <CheckBox Content="IsActive" IsChecked="{Binding SelectedProduct.IsActive}">
+                <CheckBox.Style>
+                    <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedProduct}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </CheckBox.Style>
+            </CheckBox>
+
+            <Button Content="Update" Command="{Binding UpdateProductCommand}"/>
+
+            <Button Margin="0,10,0,0" Content="Delete" Command="{Binding DeleteProductCommand}"/>
+
+            <Button Margin="0,10,0,0" Content="Delete All Products" Command="{Binding DeleteAllProductsCommand}"/>
+
+            <DataGrid Margin="50,30,50,0" MaxHeight="300" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AlternatingRowBackground="#C0C0C0" ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding SelectedProductType}"/>
+            <!--<i:Interaction.Triggers>
                 <i:EventTrigger EventName="RowEditEnding">
                     <i:InvokeCommandAction Command="{Binding RowEditEndingCommand}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>-->
-        <!--</DataGrid>-->
+            <!--</DataGrid>-->
 
-        <TextBlock Text="Add New"/>
-        <TextBox Text="{Binding AddProductTypeName}"/>
-        <Button Content="Add" Command="{Binding AddProductTypeCommand}"/>
+            <TextBlock Text="Add New"/>
+            <TextBox Text="{Binding AddProductTypeName}"/>
+            <Button Content="Add" Command="{Binding AddProductTypeCommand}"/>
 
-        <TextBlock Text="Selected"/>
-        <TextBox Text="{Binding SelectedProductType.Name}">
-            <TextBox.Style>
-                <Style TargetType="{x:Type TextBox}">
-                    <Setter Property="IsEnabled" Value="True"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding SelectedProductType}" Value="{x:Null}">
-                            <Setter Property="IsEnabled" Value="False"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
-        <Button Content="Update" Command="{Binding UpdateProductTypeCommand}"/>
+            <TextBlock Text="Selected"/>
+            <TextBox Text="{Binding SelectedProductType.Name}">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedProductType}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Button Content="Update" Command="{Binding UpdateProductTypeCommand}"/>
 
-        <Button Margin="0,10,0,0" Content="Delete" Command="{Binding DeleteProductTypeCommand}"/>
+            <Button Margin="0,10,0,0" Content="Delete" Command="{Binding DeleteProductTypeCommand}"/>
 
-        <Button Margin="0,10,0,0" Content="Delete All Product Types" Command="{Binding DeleteAllProductTypesCommand}"/>
-    </StackPanel>
+            <Button Margin="0,10,0,0" Content="Delete All Product Types" Command="{Binding DeleteAllProductTypesCommand}"/>
+
+            <DataGrid Margin="50,30,50,0" MaxHeight="300" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AlternatingRowBackground="#C0C0C0" ItemsSource="{Binding UnitsOfMeasurement}" SelectedItem="{Binding SelectedUnitOfMeasurement}"/>
+            <!--<i:Interaction.Triggers>
+                <i:EventTrigger EventName="RowEditEnding">
+                    <i:InvokeCommandAction Command="{Binding RowEditEndingCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>-->
+            <!--</DataGrid>-->
+
+            <TextBlock Text="Add New"/>
+            <TextBox Text="{Binding AddUnitOfMeasurementName}"/>
+            <Button Content="Add" Command="{Binding AddUnitOfMeasurementCommand}"/>
+
+            <TextBlock Text="Selected"/>
+            <TextBox Text="{Binding SelectedUnitOfMeasurement.Name}">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedUnitOfMeasurement}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Button Content="Update" Command="{Binding UpdateUnitOfMeasurementCommand}"/>
+
+            <Button Margin="0,10,0,0" Content="Delete" Command="{Binding DeleteUnitOfMeasurementCommand}"/>
+
+            <Button Margin="0,10,0,0" Content="Delete All Units Of Measurement" Command="{Binding DeleteAllUnitsOfMeasurementCommand}"/>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

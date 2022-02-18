@@ -14,15 +14,27 @@ namespace FoodMaintenance.ViewModels
         #endregion
 
         #region Properties
-        public List<UnitOfMeasurementDTO> UnitsOfMeasurement { get; set; } = new List<UnitOfMeasurementDTO>();
+        public List<ProductDTO> Products { get; set; } = new List<ProductDTO>();
         public List<ProductTypeDTO> ProductTypes { get; set; } = new List<ProductTypeDTO>();
+        public List<UnitOfMeasurementDTO> UnitsOfMeasurement { get; set; } = new List<UnitOfMeasurementDTO>();
+        public ProductDTO? SelectedProduct { get; set; }
         public UnitOfMeasurementDTO? SelectedUnitOfMeasurement { get; set; }
         public ProductTypeDTO? SelectedProductType { get; set; }
+        public string? NewProductName { get; set; }
+        public ProductTypeDTO? NewProductType { get; set; }
+        public int NewProductMinStockQuantity { get; set; }
+        public UnitOfMeasurementDTO? NewProductUnitOfMeasurement { get; set; }
+        public bool NewProductIsActive { get; set; } = true;
         public string? AddUnitOfMeasurementName { get; set; }
         public string? AddProductTypeName { get; set; }
         #endregion
 
         #region Commands
+        public ICommand GetProductsCommand { get; set; }
+        public ICommand AddProductCommand { get; set; }
+        public ICommand UpdateProductCommand { get; set; }
+        public ICommand DeleteProductCommand { get; set; }
+        public ICommand DeleteAllProductsCommand { get; set; }
         public ICommand GetProductTypesCommand { get; set; }
         public ICommand AddProductTypeCommand { get; set; }
         public ICommand UpdateProductTypeCommand { get; set; }
@@ -33,6 +45,7 @@ namespace FoodMaintenance.ViewModels
         public ICommand UpdateUnitOfMeasurementCommand { get; set; }
         public ICommand DeleteUnitOfMeasurementCommand { get; set; }
         public ICommand DeleteAllUnitsOfMeasurementCommand { get; set; }
+        public ICommand LoadedCommand { get; set; }
         #endregion
 
         #region Constructors
@@ -40,6 +53,11 @@ namespace FoodMaintenance.ViewModels
             : base(NavigationService)
         {
             //Didn't use AsyncRelayCommand because it eats up exceptions.
+            GetProductsCommand = new RelayCommand(async () => { await GetProducts(); });
+            AddProductCommand = new RelayCommand(async () => { await AddProduct(); });
+            UpdateProductCommand = new RelayCommand(async () => { await UpdateProduct(); });
+            DeleteProductCommand = new RelayCommand(async () => { await DeleteProduct(); });
+            DeleteAllProductsCommand = new RelayCommand(async () => { await DeleteAllProducts(); });
             GetProductTypesCommand = new RelayCommand(async () => { await GetProductTypes(); });
             AddProductTypeCommand = new RelayCommand(async () => { await AddProductType(); });
             UpdateProductTypeCommand = new RelayCommand(async () => { await UpdateProductType(); });
@@ -50,13 +68,64 @@ namespace FoodMaintenance.ViewModels
             UpdateUnitOfMeasurementCommand = new RelayCommand(async () => { await UpdateUnitOfMeasurement(); });
             DeleteUnitOfMeasurementCommand = new RelayCommand(async () => { await DeleteUnitOfMeasurement(); });
             DeleteAllUnitsOfMeasurementCommand = new RelayCommand(async () => { await DeleteAllUnitsOfMeasurement(); });
+            LoadedCommand = new RelayCommand(async () => { await ReloadAllData(); });
 
             _DbContext = DbContext;
-            GetUnitsOfMeasurement();
         }
         #endregion
 
         #region Methods
+        public async Task ReloadAllData()
+        {
+            await GetProducts();
+            await GetProductTypes();
+            await GetUnitsOfMeasurement();
+        }
+        public async Task GetProducts()
+        {
+            Products = await _DbContext.GetProducts();
+        }
+        public async Task AddProduct()
+        {
+            await _DbContext.AddProduct(new ProductDTO()
+            {
+                Name = NewProductName,
+                Type = NewProductType,
+                MinStockQuantity = NewProductMinStockQuantity,
+                UnitOfMeasurement = NewProductUnitOfMeasurement,
+                IsActive = NewProductIsActive
+            });
+
+            NewProductName = "";
+            NewProductType = null;
+            NewProductMinStockQuantity = 0;
+            NewProductUnitOfMeasurement = null;
+            NewProductIsActive = true;
+            await GetProducts();
+        }
+        public async Task UpdateProduct()
+        {
+            if (SelectedProduct != null)
+            {
+                await _DbContext.UpdateProduct(SelectedProduct);
+            }
+
+            await ReloadAllData();
+        }
+        public async Task DeleteProduct()
+        {
+            if (SelectedProduct != null)
+            {
+                await _DbContext.DeleteProduct(SelectedProduct.Id);
+            }
+
+            await ReloadAllData();
+        }
+        public async Task DeleteAllProducts()
+        {
+            await _DbContext.DeleteAllProducts();
+            await ReloadAllData();
+        }
         public async Task GetProductTypes()
         {
             ProductTypes = await _DbContext.GetProductTypes();
@@ -64,9 +133,9 @@ namespace FoodMaintenance.ViewModels
         public async Task AddProductType()
         {
             await _DbContext.AddProductType(new ProductTypeDTO() { Name = AddProductTypeName });
-
             AddProductTypeName = "";
-            await GetProductTypes();
+
+            await ReloadAllData();
         }
         public async Task UpdateProductType()
         {
@@ -75,7 +144,7 @@ namespace FoodMaintenance.ViewModels
                 await _DbContext.UpdateProductType(SelectedProductType);
             }
 
-            await GetProductTypes();
+            await ReloadAllData();
         }
         public async Task DeleteProductType()
         {
@@ -84,12 +153,12 @@ namespace FoodMaintenance.ViewModels
                 await _DbContext.DeleteProductType(SelectedProductType.Id);
             }
 
-            await GetProductTypes();
+            await ReloadAllData();
         }
         public async Task DeleteAllProductTypes()
         {
             await _DbContext.DeleteAllProductTypes();
-            await GetProductTypes();
+            await ReloadAllData();
         }
         public async Task GetUnitsOfMeasurement()
         {
@@ -98,9 +167,9 @@ namespace FoodMaintenance.ViewModels
         public async Task AddUnitOfMeasurement()
         {
             await _DbContext.AddUnitOfMeasurement(new UnitOfMeasurementDTO() { Name = AddUnitOfMeasurementName });
-
             AddUnitOfMeasurementName = "";
-            await GetUnitsOfMeasurement();
+
+            await ReloadAllData();
         }
         public async Task UpdateUnitOfMeasurement()
         {
@@ -109,7 +178,7 @@ namespace FoodMaintenance.ViewModels
                 await _DbContext.UpdateUnitOfMeasurement(SelectedUnitOfMeasurement);
             }
 
-            await GetUnitsOfMeasurement();
+            await ReloadAllData();
         }
         public async Task DeleteUnitOfMeasurement()
         {
@@ -118,12 +187,12 @@ namespace FoodMaintenance.ViewModels
                 await _DbContext.DeleteUnitOfMeasurement(SelectedUnitOfMeasurement.Id);
             }
 
-            await GetUnitsOfMeasurement();
+            await ReloadAllData();
         }
         public async Task DeleteAllUnitsOfMeasurement()
         {
             await _DbContext.DeleteAllUnitsOfMeasurement();
-            await GetUnitsOfMeasurement();
+            await ReloadAllData();
         }
         #endregion
     }
