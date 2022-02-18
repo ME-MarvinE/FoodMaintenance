@@ -61,10 +61,10 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border
-                                    Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
-                                    HorizontalAlignment="{Binding HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
-                                    VerticalAlignment="{Binding VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
-                                    Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
+                            Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
+                            HorizontalAlignment="{Binding HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                            VerticalAlignment="{Binding VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                            Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
                             <ContentPresenter HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"/>
                         </Border>
                     </ControlTemplate>
@@ -82,7 +82,10 @@
 
         </Style>
 
-        <Style x:Key="BadButton" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+        <Style
+            x:Key="BadButton"
+            BasedOn="{StaticResource {x:Type Button}}"
+            TargetType="{x:Type Button}">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="{StaticResource MainButtonBadHoverColorBrush}"/>
@@ -96,6 +99,14 @@
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="{StaticResource MainInputColorBrush}"/>
             <Setter Property="Foreground" Value="{StaticResource MainInputForegroundColorBrush}"/>
+        </Style>
+
+        <Style TargetType="{x:Type CheckBox}">
+            <Setter Property="Foreground" Value="{StaticResource MainInputForegroundColorBrush}"/>
+        </Style>
+
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
         </Style>
 
     </Application.Resources>

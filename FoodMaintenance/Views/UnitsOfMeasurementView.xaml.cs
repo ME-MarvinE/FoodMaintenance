@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FoodMaintenance.Views
 {
     /// <summary>
-    /// Interaction logic for AddProductView.xaml
+    /// Interaction logic for UnitsOfMeasurementView.xaml
     /// </summary>
-    public partial class AddProductView : UserControl
+    public partial class UnitsOfMeasurementView : UserControl
     {
-        public AddProductView()
+        public UnitsOfMeasurementView()
         {
             InitializeComponent();
         }

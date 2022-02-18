@@ -40,8 +40,14 @@
             <DataTemplate DataType="{x:Type ViewModels:DashboardViewModel}">
                 <Views:DashboardView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type ViewModels:AddProductViewModel}">
-                <Views:AddProductView/>
+            <DataTemplate DataType="{x:Type ViewModels:ProductsViewModel}">
+                <Views:ProductsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:ProductTypesViewModel}">
+                <Views:ProductTypesView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type ViewModels:UnitsOfMeasurementViewModel}">
+                <Views:UnitsOfMeasurementView/>
             </DataTemplate>
         </Grid.Resources>
 
@@ -110,14 +116,16 @@
                 Foreground="{StaticResource MainForegroundColorBrush}"
                 Text="{Binding Title, ElementName=This}"/>
 
-            <!--  Minimize Button  -->
+            <!--#region Minimize Button-->
             <Button
                 Grid.Column="1"
                 Command="{Binding ChangeWindowStateCommand}"
                 CommandParameter="{x:Static WindowState.Minimized}">
                 <Image Source="Images/white_minimize.png"/>
             </Button>
-            <!--  Maximize Button  -->
+            <!--#endregion-->
+
+            <!--#region Maximize Button-->
             <Button Grid.Column="2" Command="{Binding ChangeWindowStateCommand}">
                 <Button.Style>
                     <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
@@ -142,7 +150,9 @@
                     </Image.Style>
                 </Image>
             </Button>
-            <!--  Close Button  -->
+            <!--#endregion-->
+
+            <!--#region Close Button-->
             <Button
                 Grid.Column="3"
                 Command="{Binding CloseWindowCommand}"
@@ -170,6 +180,8 @@
                 </Button.Style>
                 <Image Source="Images/white_close.png"/>
             </Button>
+            <!--#endregion-->
+
         </Grid>
 
         <StackPanel
@@ -211,7 +223,7 @@
                                 <Setter Property="Background" Value="{StaticResource MenuBarButtonHoverBrush}"/>
                             </MultiTrigger.Setters>
                         </MultiTrigger>
-
+                        
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
                                 <Condition Property="IsPressed" Value="True"/>
@@ -245,7 +257,11 @@
                 Content="Dashboard"
                 IsChecked="True"/>
 
-            <RadioButton Command="{Binding ShowAddProductCommand}" Content="Add Product"/>
+            <RadioButton Command="{Binding ShowProductsCommand}" Content="Products"/>
+
+            <RadioButton Command="{Binding ShowProductTypesCommand}" Content="Product Types"/>
+
+            <RadioButton Command="{Binding ShowUnitsOfMeasurementCommand}" Content="Units Of Measurement"/>
 
         </StackPanel>
 

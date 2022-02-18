@@ -18,7 +18,9 @@ namespace FoodMaintenance.ViewModels
 
         #region Commands
         public ICommand ShowDashboardCommand { get; set; }
-        public ICommand ShowAddProductCommand { get; set; }
+        public ICommand ShowProductsCommand { get; set; }
+        public ICommand ShowProductTypesCommand { get; set; }
+        public ICommand ShowUnitsOfMeasurementCommand { get; set; }
         public ICommand ChangeWindowStateCommand { get; set; }
         public ICommand CloseWindowCommand { get; set; }
         #endregion
@@ -28,7 +30,9 @@ namespace FoodMaintenance.ViewModels
             :base(NavigationService)
         {
             ShowDashboardCommand = new RelayCommand(ShowDashboard);
-            ShowAddProductCommand = new RelayCommand(ShowAddProduct);
+            ShowProductsCommand = new RelayCommand(ShowProducts);
+            ShowProductTypesCommand = new RelayCommand(ShowProductTypes);
+            ShowUnitsOfMeasurementCommand = new RelayCommand(ShowUnitsOfMeasurement);
             ChangeWindowStateCommand = new RelayCommand<WindowState>(ChangeWindowState);
             CloseWindowCommand = new RelayCommand<Window?>(CloseWindow);
             _DbContext = DbContext;
@@ -41,9 +45,17 @@ namespace FoodMaintenance.ViewModels
         {
             NavigationService.Navigate(new DashboardViewModel(NavigationService, _DbContext));
         }
-        public void ShowAddProduct()
+        public void ShowProducts()
         {
-            NavigationService.Navigate(new AddProductViewModel(NavigationService));
+            NavigationService.Navigate(new ProductsViewModel(NavigationService, _DbContext));
+        }
+        public void ShowProductTypes()
+        {
+            NavigationService.Navigate(new ProductTypesViewModel(NavigationService, _DbContext));
+        }
+        public void ShowUnitsOfMeasurement()
+        {
+            NavigationService.Navigate(new UnitsOfMeasurementViewModel(NavigationService, _DbContext));
         }
         public void ChangeWindowState(WindowState WindowState)
         {
