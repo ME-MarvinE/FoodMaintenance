@@ -18,7 +18,7 @@
     </i:Interaction.Triggers>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="20,0,20,0">
+        <StackPanel Margin="20,0,20,20">
 
             <StackPanel.Resources>
                 <Style TargetType="{x:Type TextBlock}">
