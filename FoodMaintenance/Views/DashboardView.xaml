@@ -8,13 +8,13 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <ScrollViewer>
         <StackPanel>
             <StackPanel.Resources>
@@ -35,10 +35,10 @@
             <!--</DataGrid>-->
 
             <TextBlock Text="Add New"/>
-            <TextBox Text="{Binding NewProductName}"/>
+            <TextBox Text="{Binding ProductToAdd.Name}"/>
 
             <TextBlock Text="Type"/>
-            <ComboBox ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding NewProductType}">
+            <ComboBox ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding ProductToAdd.Type}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
                         <TextBlock Text="{Binding Name}"/>
@@ -46,10 +46,11 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <TextBox Text="{Binding NewProductMinStockQuantity}"/>
+            <TextBlock Text="Minimum Stock Quantity"/>
+            <TextBox Text="{Binding ProductToAdd.MinStockQuantity}"/>
 
             <TextBlock Text="Unit Of Measurement"/>
-            <ComboBox ItemsSource="{Binding UnitsOfMeasurement}" SelectedItem="{Binding NewProductUnitOfMeasurement}">
+            <ComboBox ItemsSource="{Binding UnitsOfMeasurement}" SelectedItem="{Binding ProductToAdd.UnitOfMeasurement}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
                         <TextBlock Text="{Binding Name}"/>
@@ -57,7 +58,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
 
-            <CheckBox Content="IsActive" IsChecked="{Binding NewProductIsActive}"/>
+            <CheckBox Content="IsActive" IsChecked="{Binding ProductToAdd.IsActive}"/>
             <Button Content="Add" Command="{Binding AddProductCommand}"/>
 
             <TextBlock Text="Update Selected"/>
@@ -75,7 +76,7 @@
             </TextBox>
 
             <TextBlock Text="Type"/>
-            <ComboBox ItemsSource="{Binding ProductTypes}">
+            <ComboBox ItemsSource="{Binding ProductTypes}" SelectedItem="{Binding SelectedProduct.Type}">
 
                 <ComboBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
@@ -85,10 +86,10 @@
 
                 <ComboBox.Style>
                     <Style TargetType="{x:Type ComboBox}">
-                        <Setter Property="IsEditable" Value="True"/>
+                        <Setter Property="IsEnabled" Value="True"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding SelectedProduct}" Value="{x:Null}">
-                                <Setter Property="IsEditable" Value="False"/>
+                                <Setter Property="IsEnabled" Value="False"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -96,6 +97,7 @@
 
             </ComboBox>
 
+            <TextBlock Text="Minimum Stock Quantity"/>
             <TextBox Text="{Binding SelectedProduct.MinStockQuantity}">
                 <TextBox.Style>
                     <Style TargetType="{x:Type TextBox}">
@@ -110,7 +112,7 @@
             </TextBox>
 
             <TextBlock Text="Unit Of Measurement"/>
-            <ComboBox ItemsSource="{Binding UnitsOfMeasurement}">
+            <ComboBox ItemsSource="{Binding UnitsOfMeasurement}" SelectedItem="{Binding SelectedProduct.UnitOfMeasurement}">
 
                 <ComboBox.ItemTemplate>
                     <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
@@ -120,10 +122,10 @@
 
                 <ComboBox.Style>
                     <Style TargetType="{x:Type ComboBox}">
-                        <Setter Property="IsEditable" Value="True"/>
+                        <Setter Property="IsEnabled" Value="True"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding SelectedProduct}" Value="{x:Null}">
-                                <Setter Property="IsEditable" Value="False"/>
+                                <Setter Property="IsEnabled" Value="False"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -159,7 +161,7 @@
             <!--</DataGrid>-->
 
             <TextBlock Text="Add New"/>
-            <TextBox Text="{Binding AddProductTypeName}"/>
+            <TextBox Text="{Binding ProductTypeToAdd.Name}"/>
             <Button Content="Add" Command="{Binding AddProductTypeCommand}"/>
 
             <TextBlock Text="Selected"/>
@@ -190,7 +192,7 @@
             <!--</DataGrid>-->
 
             <TextBlock Text="Add New"/>
-            <TextBox Text="{Binding AddUnitOfMeasurementName}"/>
+            <TextBox Text="{Binding UnitOfMeasurementToAdd.Name}"/>
             <Button Content="Add" Command="{Binding AddUnitOfMeasurementCommand}"/>
 
             <TextBlock Text="Selected"/>

@@ -18,15 +18,11 @@ namespace FoodMaintenance.ViewModels
         public List<ProductTypeDTO> ProductTypes { get; set; } = new List<ProductTypeDTO>();
         public List<UnitOfMeasurementDTO> UnitsOfMeasurement { get; set; } = new List<UnitOfMeasurementDTO>();
         public ProductDTO? SelectedProduct { get; set; }
-        public UnitOfMeasurementDTO? SelectedUnitOfMeasurement { get; set; }
+        public ProductDTO ProductToAdd { get; set; } = new ProductDTO();
         public ProductTypeDTO? SelectedProductType { get; set; }
-        public string? NewProductName { get; set; }
-        public ProductTypeDTO? NewProductType { get; set; }
-        public int NewProductMinStockQuantity { get; set; }
-        public UnitOfMeasurementDTO? NewProductUnitOfMeasurement { get; set; }
-        public bool NewProductIsActive { get; set; } = true;
-        public string? AddUnitOfMeasurementName { get; set; }
-        public string? AddProductTypeName { get; set; }
+        public ProductTypeDTO ProductTypeToAdd { get; set; } = new ProductTypeDTO();
+        public UnitOfMeasurementDTO? SelectedUnitOfMeasurement { get; set; }
+        public UnitOfMeasurementDTO UnitOfMeasurementToAdd { get; set; } = new UnitOfMeasurementDTO();
         #endregion
 
         #region Commands
@@ -87,20 +83,8 @@ namespace FoodMaintenance.ViewModels
         }
         public async Task AddProduct()
         {
-            await _DbContext.AddProduct(new ProductDTO()
-            {
-                Name = NewProductName,
-                Type = NewProductType,
-                MinStockQuantity = NewProductMinStockQuantity,
-                UnitOfMeasurement = NewProductUnitOfMeasurement,
-                IsActive = NewProductIsActive
-            });
-
-            NewProductName = "";
-            NewProductType = null;
-            NewProductMinStockQuantity = 0;
-            NewProductUnitOfMeasurement = null;
-            NewProductIsActive = true;
+            await _DbContext.AddProduct(ProductToAdd);
+            ProductToAdd = new ProductDTO();
             await GetProducts();
         }
         public async Task UpdateProduct()
@@ -132,8 +116,8 @@ namespace FoodMaintenance.ViewModels
         }
         public async Task AddProductType()
         {
-            await _DbContext.AddProductType(new ProductTypeDTO() { Name = AddProductTypeName });
-            AddProductTypeName = "";
+            await _DbContext.AddProductType(ProductTypeToAdd);
+            ProductTypeToAdd = new ProductTypeDTO();
 
             await ReloadAllData();
         }
@@ -166,8 +150,8 @@ namespace FoodMaintenance.ViewModels
         }
         public async Task AddUnitOfMeasurement()
         {
-            await _DbContext.AddUnitOfMeasurement(new UnitOfMeasurementDTO() { Name = AddUnitOfMeasurementName });
-            AddUnitOfMeasurementName = "";
+            await _DbContext.AddUnitOfMeasurement(UnitOfMeasurementToAdd);
+            UnitOfMeasurementToAdd = new UnitOfMeasurementDTO();
 
             await ReloadAllData();
         }
