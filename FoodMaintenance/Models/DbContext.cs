@@ -28,24 +28,26 @@ namespace FoodMaintenance.Models
                 config.CreateMap<Product, ProductDTO>()
                     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
-                    .ForMember(dest => dest.Type, opt => opt.MapFrom((src, dest, member, context) => context.Mapper.Map<ProductType?, ProductTypeDTO?>(src.Type)))
+                    .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
                     .ForMember(dest => dest.MinStockQuantity, opt => opt.MapFrom(src => src.MinStockQuantity))
-                    .ForMember(dest => dest.UnitOfMeasurement, opt => opt.MapFrom((src, dest, member, context) => context.Mapper.Map<UnitOfMeasurement?, UnitOfMeasurementDTO?>(src.UnitOfMeasurement)))
+                    .ForMember(dest => dest.UnitOfMeasurement, opt => opt.MapFrom(src => src.UnitOfMeasurement))
                     .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => src.IsActive));
                 config.CreateMap<ProductDTO, Product>()
                     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
-                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+                    .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
+                    .ForMember(dest => dest.TypeName, opt => opt.MapFrom(src => src.Type.Name))
+                    .ForMember(dest => dest.MinStockQuantity, opt => opt.MapFrom(src => src.MinStockQuantity))
+                    .ForMember(dest => dest.UnitOfMeasurement, opt => opt.MapFrom(src => src.UnitOfMeasurement))
+                    .ForMember(dest => dest.UnitOfMeasurementName, opt => opt.MapFrom(src => src.UnitOfMeasurement.Name))
+                    .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => src.IsActive));
                 config.CreateMap<ProductType, ProductTypeDTO>()
-                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
                 config.CreateMap<ProductTypeDTO, ProductType>()
-                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
                 config.CreateMap<UnitOfMeasurement, UnitOfMeasurementDTO>()
-                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
                 config.CreateMap<UnitOfMeasurementDTO, UnitOfMeasurement>()
-                    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
             });
 
@@ -116,11 +118,11 @@ namespace FoodMaintenance.Models
 
             return ProductTypesDTO;
         }
-        public async Task<ProductTypeDTO?> GetProductType(int Id)
+        public async Task<ProductTypeDTO?> GetProductType(string? Name)
         {
             SQLiteAsyncConnection Con = await GetConnection();
 
-            ProductType? ProductType = await Con.GetWithChildrenAsync<ProductType?>(Id);
+            ProductType? ProductType = await Con.GetWithChildrenAsync<ProductType?>(Name);
             return _Mapper.Map<ProductType?, ProductTypeDTO>(ProductType);
         }
         public async Task AddProductType(ProductTypeDTO ProductTypeDTO)
@@ -137,11 +139,11 @@ namespace FoodMaintenance.Models
             ProductType ProductType = _Mapper.Map<ProductTypeDTO, ProductType>(ProductTypeDTO);
             await Con.UpdateWithChildrenAsync(ProductType);
         }
-        public async Task DeleteProductType(int Id)
+        public async Task DeleteProductType(string? Name)
         {
             SQLiteAsyncConnection Con = await GetConnection();
 
-            await Con.DeleteAsync<ProductType>(Id);
+            await Con.DeleteAsync<ProductType>(Name);
         }
         public async Task DeleteAllProductTypes()
         {
@@ -160,11 +162,11 @@ namespace FoodMaintenance.Models
 
             return UnitsOfMeasurementDTO;
         }
-        public async Task<UnitOfMeasurementDTO?> GetUnitOfMeasurement(int Id)
+        public async Task<UnitOfMeasurementDTO?> GetUnitOfMeasurement(string? Name)
         {
             SQLiteAsyncConnection Con = await GetConnection();
 
-            UnitOfMeasurement? UnitOfMeasurement = await Con.GetWithChildrenAsync<UnitOfMeasurement?>(Id);
+            UnitOfMeasurement? UnitOfMeasurement = await Con.GetWithChildrenAsync<UnitOfMeasurement?>(Name);
             return _Mapper.Map<UnitOfMeasurement?, UnitOfMeasurementDTO>(UnitOfMeasurement);
         }
         public async Task AddUnitOfMeasurement(UnitOfMeasurementDTO UnitOfMeasurementDTO)
@@ -181,11 +183,11 @@ namespace FoodMaintenance.Models
             UnitOfMeasurement UnitOfMeasurement = _Mapper.Map<UnitOfMeasurementDTO, UnitOfMeasurement>(UnitOfMeasurementDTO);
             await Con.UpdateWithChildrenAsync(UnitOfMeasurement);
         }
-        public async Task DeleteUnitOfMeasurement(int Id)
+        public async Task DeleteUnitOfMeasurement(string? Name)
         {
             SQLiteAsyncConnection Con = await GetConnection();
 
-            await Con.DeleteAsync<UnitOfMeasurement>(Id);
+            await Con.DeleteAsync<UnitOfMeasurement>(Name);
         }
         public async Task DeleteAllUnitsOfMeasurement()
         {

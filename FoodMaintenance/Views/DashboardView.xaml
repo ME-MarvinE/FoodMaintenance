@@ -306,7 +306,6 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Header="Id"/>
                     <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
                 </DataGrid.Columns>
             </DataGrid>
@@ -436,7 +435,6 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Header="Id"/>
                     <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
                 </DataGrid.Columns>
             </DataGrid>

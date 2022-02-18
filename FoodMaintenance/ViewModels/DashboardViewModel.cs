@@ -18,7 +18,7 @@ namespace FoodMaintenance.ViewModels
         public List<ProductTypeDTO> ProductTypes { get; set; } = new List<ProductTypeDTO>();
         public List<UnitOfMeasurementDTO> UnitsOfMeasurement { get; set; } = new List<UnitOfMeasurementDTO>();
         public ProductDTO? SelectedProduct { get; set; }
-        public ProductDTO ProductToAdd { get; set; } = new ProductDTO();
+        public ProductDTO ProductToAdd { get; set; } = new ProductDTO() { IsActive = true};
         public ProductTypeDTO? SelectedProductType { get; set; }
         public ProductTypeDTO ProductTypeToAdd { get; set; } = new ProductTypeDTO();
         public UnitOfMeasurementDTO? SelectedUnitOfMeasurement { get; set; }
@@ -84,7 +84,7 @@ namespace FoodMaintenance.ViewModels
         public async Task AddProduct()
         {
             await _DbContext.AddProduct(ProductToAdd);
-            ProductToAdd = new ProductDTO();
+            ProductToAdd = new ProductDTO() { IsActive = true };
             await ReloadData();
         }
         public async Task UpdateProduct()
@@ -134,7 +134,7 @@ namespace FoodMaintenance.ViewModels
         {
             if (SelectedProductType != null)
             {
-                await _DbContext.DeleteProductType(SelectedProductType.Id);
+                await _DbContext.DeleteProductType(SelectedProductType.Name);
             }
 
             await ReloadData();
@@ -168,7 +168,7 @@ namespace FoodMaintenance.ViewModels
         {
             if (SelectedUnitOfMeasurement !=  null)
             {
-                await _DbContext.DeleteUnitOfMeasurement(SelectedUnitOfMeasurement.Id);
+                await _DbContext.DeleteUnitOfMeasurement(SelectedUnitOfMeasurement.Name);
             }
 
             await ReloadData();

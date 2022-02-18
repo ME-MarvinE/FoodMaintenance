@@ -8,11 +8,9 @@ namespace FoodMaintenance.Models
     public class UnitOfMeasurement
     {
         #region Properties
-        [PrimaryKey, AutoIncrement, NotNull]
-        public int Id { get; set; }
-        [NotNull]
+        [PrimaryKey, NotNull]
         public string? Name { get; set; }
-        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        [OneToMany]
         public List<Product>? Products { get; set; }
         #endregion
     }

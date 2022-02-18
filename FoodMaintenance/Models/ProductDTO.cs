@@ -7,6 +7,6 @@
         public ProductTypeDTO? Type { get; set; }
         public float MinStockQuantity { get; set; }
         public UnitOfMeasurementDTO? UnitOfMeasurement { get; set; }
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }
