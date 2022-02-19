@@ -262,6 +262,50 @@
             <Setter Property="Foreground" Value="{StaticResource InputForegroundColorBrush}"/>
         </Style>
 
+        <Style x:Key="CreateTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=CreateValidationControl}" Value="True">
+                    <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationRuleErrorTemplate}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="CreateComboBoxStyle" TargetType="{x:Type ComboBox}">
+            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=CreateValidationControl}" Value="True">
+                    <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationRuleErrorTemplate}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="UpdateTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="True"/>
+                        <Condition Binding="{Binding IsMouseOver, ElementName=UpdateValidationControl}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationRuleErrorTemplate}"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="UpdateComboBoxStyle" TargetType="{x:Type ComboBox}">
+            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+            <Style.Triggers>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="True"/>
+                        <Condition Binding="{Binding IsMouseOver, ElementName=UpdateValidationControl}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationRuleErrorTemplate}"/>
+                </MultiDataTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Application.Resources>
 
 </Application>

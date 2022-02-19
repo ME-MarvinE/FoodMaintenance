@@ -1,13 +1,11 @@
 ﻿<UserControl
     x:Class="FoodMaintenance.Views.ProductsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Models="clr-namespace:FoodMaintenance.Models"
-    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:local="clr-namespace:FoodMaintenance.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Models="clr-namespace:FoodMaintenance.Models"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -84,6 +82,7 @@
                 FontWeight="Bold"/>
 
             <Border
+                x:Name="CreateValidationControl"
                 Grid.Row="1"
                 Grid.Column="0"
                 Margin="10,0,10,0"
@@ -93,15 +92,12 @@
 
                 <StackPanel>
 
-                    <Label
-                        Margin="0,5,0,0"
-                        Content="Name"
-                        FontSize="{StaticResource Heading3FontSize}"/>
+                    <Label Content="Name" FontSize="{StaticResource Heading3FontSize}"/>
                     <TextBox
                         x:Name="ProductToAddNameTextBox"
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
-                        Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                        Style="{StaticResource CreateTextBoxStyle}">
                         <TextBox.Text>
                             <Binding
                                 Path="ProductToAdd.Name"
@@ -124,7 +120,7 @@
                         FontSize="{StaticResource Text1FontSize}"
                         IsTextSearchEnabled="True"
                         ItemsSource="{Binding ProductTypes}"
-                        Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                        Style="{StaticResource CreateComboBoxStyle}">
 
                         <ComboBox.SelectedItem>
                             <Binding
@@ -153,7 +149,7 @@
                         x:Name="ProductToAddMinStockQuantityTextBox"
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
-                        Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                        Style="{StaticResource CreateTextBoxStyle}">
                         <TextBox.Text>
                             <Binding
                                 Path="ProductToAdd.MinStockQuantity"
@@ -176,7 +172,7 @@
                         FontSize="{StaticResource Text1FontSize}"
                         IsTextSearchEnabled="True"
                         ItemsSource="{Binding UnitsOfMeasurement}"
-                        Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                        Style="{StaticResource CreateComboBoxStyle}">
 
                         <ComboBox.SelectedItem>
                             <Binding
@@ -240,6 +236,7 @@
                 FontWeight="Bold"/>
 
             <Border
+                x:Name="UpdateValidationControl"
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="10,0,10,0"
@@ -260,15 +257,12 @@
                         </Style>
                     </StackPanel.Style>
 
-                    <Label
-                        Margin="0,5,0,0"
-                        Content="Name"
-                        FontSize="{StaticResource Heading3FontSize}"/>
+                    <Label Content="Name" FontSize="{StaticResource Heading3FontSize}"/>
                     <TextBox
                         x:Name="SelectedProductNameTextBox"
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
-                        Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                        Style="{StaticResource UpdateTextBoxStyle}">
                         <TextBox.Text>
                             <Binding
                                 Path="SelectedProduct.Name"
@@ -291,7 +285,7 @@
                         FontSize="{StaticResource Text1FontSize}"
                         IsTextSearchEnabled="True"
                         ItemsSource="{Binding ProductTypes}"
-                        Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                        Style="{StaticResource UpdateComboBoxStyle}">
 
                         <ComboBox.SelectedItem>
                             <Binding
@@ -320,7 +314,7 @@
                         x:Name="SelectedProductMinStockQuantityTextBox"
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
-                        Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                        Style="{StaticResource UpdateTextBoxStyle}">
                         <TextBox.Text>
                             <Binding
                                 Path="SelectedProduct.MinStockQuantity"
