@@ -5,10 +5,11 @@ namespace FoodMaintenance.ValidationRules
 {
     public class ObjectValidationRule : ValidationRule
     {
-        public bool AllowNull { get; set; }
+        public bool NullCheck { get; set; }
+        public string? NullCheckErrorMessage { get; set; }
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (!AllowNull && value == null) { return new ValidationResult(false, $"Must not be null."); }
+            if (NullCheck && value == null) { return new ValidationResult(false, NullCheckErrorMessage ?? $"Must not be null."); }
 
             return new ValidationResult(true, null);
         }
