@@ -12,6 +12,10 @@
         <SolidColorBrush x:Key="MainBackgroundColorBrush" Color="{StaticResource MainBackgroundColor}"/>
         <Color x:Key="MainForegroundColor">White</Color>
         <SolidColorBrush x:Key="MainForegroundColorBrush" Color="{StaticResource MainForegroundColor}"/>
+        <Color x:Key="ContentBackgroundColor">#303040</Color>
+        <SolidColorBrush x:Key="ContentBackgroundColorBrush" Color="{StaticResource ContentBackgroundColor}"/>
+        <Color x:Key="ContentForegroundColor">White</Color>
+        <SolidColorBrush x:Key="ContentForegroundColorBrush" Color="{StaticResource ContentForegroundColor}"/>
         <Color x:Key="TitleBarBackgroundColor">#272537</Color>
         <SolidColorBrush x:Key="TitleBarBackgroundColorBrush" Color="{StaticResource TitleBarBackgroundColor}"/>
         <Color x:Key="MenuBarBackgroundColor">#1B192B</Color>

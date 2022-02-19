@@ -17,14 +17,13 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-
-    <StackPanel Margin="20">
+    <StackPanel Margin="40,30,40,20">
 
         <Label
-                FontSize="{StaticResource Heading1FontSize}"
-                FontWeight="Bold"
-                Content="Dashboard"/>
+            Content="Dashboard"
+            FontSize="{StaticResource Heading1FontSize}"
+            FontWeight="Bold"/>
 
     </StackPanel>
-    
+
 </UserControl>
