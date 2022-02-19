@@ -92,13 +92,11 @@
                     FontSize="{StaticResource Text1FontSize}">
                     <Button.Style>
                         <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                            <Setter Property="IsEnabled" Value="False"/>
                             <Style.Triggers>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding (Validation.HasError), ElementName=ProductTypeToAddNameTextBox}" Value="True"/>
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter Property="IsEnabled" Value="False"/>
-                                </MultiDataTrigger>
+                                <DataTrigger Binding="{Binding (Validation.HasError), ElementName=ProductTypeToAddNameTextBox}" Value="False">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
@@ -152,13 +150,11 @@
                     FontSize="{StaticResource Text1FontSize}">
                     <Button.Style>
                         <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                            <Setter Property="IsEnabled" Value="False"/>
                             <Style.Triggers>
-                                <MultiDataTrigger>
-                                    <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding (Validation.HasError), ElementName=SelectedProductTypeNameTextBox}" Value="True"/>
-                                    </MultiDataTrigger.Conditions>
-                                    <Setter Property="IsEnabled" Value="False"/>
-                                </MultiDataTrigger>
+                                <DataTrigger Binding="{Binding (Validation.HasError), ElementName=SelectedProductTypeNameTextBox}" Value="False">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
