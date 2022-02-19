@@ -48,10 +48,10 @@
         <SolidColorBrush x:Key="ButtonHoverColorBrush" Color="{StaticResource ButtonHoverColor}"/>
         <Color x:Key="ButtonPressedColor">#2090FF</Color>
         <SolidColorBrush x:Key="ButtonPressedColorBrush" Color="{StaticResource ButtonPressedColor}"/>
-        <Color x:Key="ButtonWarnHoverColor">#C02A2A</Color>
-        <SolidColorBrush x:Key="ButtonWarnHoverColorBrush" Color="{StaticResource ButtonWarnHoverColor}"/>
-        <Color x:Key="ButtonWarnPressedColor">#F04A4A</Color>
-        <SolidColorBrush x:Key="ButtonWarnPressedColorBrush" Color="{StaticResource ButtonWarnPressedColor}"/>
+        <Color x:Key="WarnedButtonHoverColor">#C02A2A</Color>
+        <SolidColorBrush x:Key="WarnedButtonHoverColorBrush" Color="{StaticResource WarnedButtonHoverColor}"/>
+        <Color x:Key="WarnedButtonPressedColor">#F04A4A</Color>
+        <SolidColorBrush x:Key="WarnedButtonPressedColorBrush" Color="{StaticResource WarnedButtonPressedColor}"/>
 
         <Color x:Key="WindowButtonHoverColor">#373547</Color>
         <SolidColorBrush x:Key="WindowButtonHoverColorBrush" Color="{StaticResource WindowButtonHoverColor}"/>
@@ -68,6 +68,37 @@
         <System:Double x:Key="Heading3FontSize">16</System:Double>
         <System:Double x:Key="Text1FontSize">14</System:Double>
 
+        <ValidationRules:StringValidationRule
+            x:Key="NotNullOrWhiteSpaceValidationRule"
+            NullOrWhiteSpaceCheck="True"
+            ValidatesOnTargetUpdated="True"/>
+        <ValidationRules:StringValidationRule
+            x:Key="NumericValidationRule"
+            RegexPattern="^ *[0-9]+ *$"
+            RegexPatternErrorMessage="Must be a number."
+            ValidatesOnTargetUpdated="True"/>
+        <ValidationRules:ObjectValidationRule
+            x:Key="NotNullValidationRule"
+            NullCheck="True"
+            ValidatesOnTargetUpdated="True"/>
+        
+        <ControlTemplate x:Key="ValidationRuleErrorTemplate">
+            <Grid>
+                <Polygon
+                    Margin="0,1,1,0"
+                    HorizontalAlignment="Right"
+                    Fill="{StaticResource ValidationErrorColorBrush}"
+                    Points="9, 9, 9, 0, 0, 0"
+                    Stroke="{StaticResource ValidationErrorColorBrush}"
+                    StrokeThickness="1"
+                    ToolTip="{Binding ErrorContent}"/>
+
+                <Border BorderBrush="{StaticResource ValidationErrorColorBrush}" BorderThickness="1"/>
+
+                <AdornedElementPlaceholder/>
+            </Grid>
+        </ControlTemplate>
+
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="{StaticResource ButtonBackgroundColorBrush}"/>
             <Setter Property="Foreground" Value="{StaticResource ButtonForegroundColorBrush}"/>
@@ -83,6 +114,7 @@
                             CornerRadius="5">
 
                             <Label
+                                FontSize="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}}"
                                 HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"
                                 VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"
                                 Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
@@ -115,17 +147,22 @@
         </Style>
 
         <Style
-            x:Key="BadButton"
+            x:Key="WarnedButton"
             BasedOn="{StaticResource {x:Type Button}}"
             TargetType="{x:Type Button}">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource ButtonWarnHoverColorBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource WarnedButtonHoverColorBrush}"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="{StaticResource ButtonWarnPressedColorBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource WarnedButtonPressedColorBrush}"/>
                 </Trigger>
             </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="FontSize" Value="{StaticResource Heading1FontSize}"/>
+            <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
         </Style>
 
         <Style TargetType="{x:Type TextBox}">
@@ -136,40 +173,6 @@
         <Style TargetType="{x:Type CheckBox}">
             <Setter Property="Foreground" Value="{StaticResource InputForegroundColorBrush}"/>
         </Style>
-
-        <Style TargetType="{x:Type Label}">
-            <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
-        </Style>
-
-        <ValidationRules:StringValidationRule
-            x:Key="NotNullOrWhiteSpaceValidationRule"
-            NullOrWhiteSpaceCheck="True"
-            ValidatesOnTargetUpdated="True"/>
-        <ValidationRules:StringValidationRule
-            x:Key="NumericValidationRule"
-            RegexPattern="^ *[0-9]+ *$"
-            RegexPatternErrorMessage="Must be a number."
-            ValidatesOnTargetUpdated="True"/>
-        <ValidationRules:ObjectValidationRule
-            x:Key="NotNullValidationRule"
-            NullCheck="True"
-            ValidatesOnTargetUpdated="True"/>
-        <ControlTemplate x:Key="ValidationRuleErrorTemplate">
-            <Grid>
-                <Polygon
-                    Margin="0,1,1,0"
-                    HorizontalAlignment="Right"
-                    Fill="{StaticResource ValidationErrorColorBrush}"
-                    Points="9, 9, 9, 0, 0, 0"
-                    Stroke="{StaticResource ValidationErrorColorBrush}"
-                    StrokeThickness="1"
-                    ToolTip="{Binding ErrorContent}"/>
-
-                <Border BorderBrush="{StaticResource ValidationErrorColorBrush}" BorderThickness="1"/>
-
-                <AdornedElementPlaceholder/>
-            </Grid>
-        </ControlTemplate>
 
     </Application.Resources>
 
