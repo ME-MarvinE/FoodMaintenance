@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:ValidationRules="clr-namespace:FoodMaintenance.ValidationRules"
     xmlns:local="clr-namespace:FoodMaintenance">
 
     <Application.Resources>
@@ -48,6 +49,9 @@
         <Color x:Key="MainInputForegroundColor">White</Color>
         <SolidColorBrush x:Key="MainInputForegroundColorBrush" Color="{StaticResource MainInputForegroundColor}"/>
 
+        <Color x:Key="ValidationErrorColor">Red</Color>
+        <SolidColorBrush x:Key="ValidationErrorColorBrush" Color="{StaticResource ValidationErrorColor}"/>
+        
         <System:Double x:Key="Heading1FontSize">28</System:Double>
         <System:Double x:Key="Heading2FontSize">20</System:Double>
         <System:Double x:Key="Heading3FontSize">16</System:Double>
@@ -108,6 +112,28 @@
         <Style TargetType="{x:Type Label}">
             <Setter Property="Foreground" Value="{StaticResource MainForegroundColorBrush}"/>
         </Style>
+
+        <ValidationRules:StringValidationRule
+            x:Key="NotNullOrWhiteSpaceValidationRule"
+            AllowEmpty="False"
+            AllowNull="False"
+            AllowWhiteSpace="False"/>
+        <ControlTemplate x:Key="ValidationRuleErrorTemplate">
+            <Grid>
+                <Polygon
+                    HorizontalAlignment="Right"
+                    Fill="{StaticResource ValidationErrorColorBrush}"
+                    Points="9, 9, 9, 0, 0, 0"
+                    Stroke="{StaticResource ValidationErrorColorBrush}"
+                    StrokeThickness="1"
+                    ToolTip="{Binding ErrorContent}"
+                    Margin="0,1,1,0"/>
+
+                <Border BorderBrush="{StaticResource ValidationErrorColorBrush}" BorderThickness="1"/>
+                
+                <AdornedElementPlaceholder/>
+            </Grid>
+        </ControlTemplate>
 
     </Application.Resources>
 

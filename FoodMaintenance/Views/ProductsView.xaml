@@ -17,15 +17,14 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="20">
+    <StackPanel Margin="20">
 
-            <Label
+        <Label
                 FontSize="{StaticResource Heading1FontSize}"
                 FontWeight="Bold"
                 Content="Products"/>
 
-            <DataGrid
+        <DataGrid
                 Height="300"
                 Margin="50,30,50,0"
                 AlternatingRowBackground="#808090"
@@ -40,199 +39,200 @@
                 RowBackground="#505060"
                 SelectedItem="{Binding SelectedProduct}"
                 VerticalScrollBarVisibility="Auto">
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Foreground" Value="Black"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Header="Id"/>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
-                    <DataGridTemplateColumn Header="Type">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding Type.Name}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding MinStockQuantity}" Header="Minimum Stock Quantity"/>
-                    <DataGridTemplateColumn Header="Unit Of Measurement">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding UnitOfMeasurement.Name}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridCheckBoxColumn Binding="{Binding IsActive}" Header="Active"/>
-                </DataGrid.Columns>
-            </DataGrid>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Header="Id"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
+                <DataGridTemplateColumn Header="Type">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Type.Name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding MinStockQuantity}" Header="Minimum Stock Quantity"/>
+                <DataGridTemplateColumn Header="Unit Of Measurement">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding UnitOfMeasurement.Name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridCheckBoxColumn Binding="{Binding IsActive}" Header="Active"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
-            <Grid Margin="10,20,10,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+        <Grid Margin="10,20,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0" Margin="10,0,10,0">
+            <StackPanel Grid.Column="0" Margin="10,0,10,0">
 
-                    <Label
+                <Label
                         FontSize="{StaticResource Heading2FontSize}"
                         FontWeight="Bold"
                         Content="Create"/>
 
-                    <Label
+                <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
                         Content="Name"/>
-                    <TextBox
+                <TextBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         Text="{Binding ProductToAdd.Name}"/>
 
-                    <Label
+                <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
-                        Content="Type"/>
-                    <ComboBox
+                        Content="Type">
+                </Label>
+                <ComboBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         IsTextSearchEnabled="True"
                         ItemsSource="{Binding ProductTypes}"
                         SelectedItem="{Binding ProductToAdd.Type}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
-                                <Label Content="{Binding Name}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
-                    <Label
+                <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
                         Content="Minimum Stock Quantity"/>
-                    <TextBox
+                <TextBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         Text="{Binding ProductToAdd.MinStockQuantity}"/>
 
-                    <Label
+                <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
                         Content="Unit Of Measurement"/>
-                    <ComboBox
+                <ComboBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         IsTextSearchEnabled="True"
                         ItemsSource="{Binding UnitsOfMeasurement}"
                         SelectedItem="{Binding ProductToAdd.UnitOfMeasurement}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
-                                <Label Content="{Binding Name}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
-                    <CheckBox
+                <CheckBox
                         Margin="0,5,0,0"
                         VerticalContentAlignment="Center"
                         Content="Active"
                         FontSize="{StaticResource Heading3FontSize}"
                         IsChecked="{Binding ProductToAdd.IsActive}"/>
 
-                    <Button
+                <Button
                         Margin="0,10,0,0"
                         Padding="10"
                         Command="{Binding AddProductCommand}"
                         Content="Create"
                         FontSize="{StaticResource Text1FontSize}"/>
 
-                </StackPanel>
+            </StackPanel>
 
-                <StackPanel Grid.Column="1" Margin="10,0,10,0">
-                    <StackPanel.Style>
-                        <Style TargetType="{x:Type StackPanel}">
-                            <Setter Property="IsEnabled" Value="True"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding SelectedProduct}" Value="{x:Null}">
-                                    <Setter Property="IsEnabled" Value="False"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </StackPanel.Style>
+            <StackPanel Grid.Column="1" Margin="10,0,10,0">
+                <StackPanel.Style>
+                    <Style TargetType="{x:Type StackPanel}">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedProduct}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
 
-                    <Label
+                <Label
                         FontSize="{StaticResource Heading2FontSize}"
                         FontWeight="Bold"
                         Content="Update"/>
 
-                    <Label
+                <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
                         Content="Name"/>
-                    <TextBox
+                <TextBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         Text="{Binding SelectedProduct.Name}"/>
 
-                    <Label
+                <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
                         Content="Type"/>
-                    <ComboBox
+                <ComboBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         IsTextSearchEnabled="True"
                         ItemsSource="{Binding ProductTypes}"
                         SelectedItem="{Binding SelectedProduct.Type}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
-                                <Label Content="{Binding Name}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
-                    <Label
+                <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
                         Content="Minimum Stock Quantity"/>
-                    <TextBox
+                <TextBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         Text="{Binding SelectedProduct.MinStockQuantity}"/>
 
-                    <Label
+                <Label
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Heading3FontSize}"
                         Content="Unit Of Measurement"/>
-                    <ComboBox
+                <ComboBox
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
                         IsTextSearchEnabled="True"
                         ItemsSource="{Binding UnitsOfMeasurement}"
                         SelectedItem="{Binding SelectedProduct.UnitOfMeasurement}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
-                                <Label Content="{Binding Name}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
-                    <CheckBox
+                <CheckBox
                         Margin="0,5,0,0"
                         VerticalContentAlignment="Center"
                         Content="Active"
                         FontSize="{StaticResource Heading3FontSize}"
                         IsChecked="{Binding SelectedProduct.IsActive}"/>
 
-                    <Button
+                <Button
                         Margin="0,10,0,0"
                         Padding="10"
                         Command="{Binding UpdateProductCommand}"
                         Content="Update"
                         FontSize="{StaticResource Text1FontSize}"/>
 
-                    <Button
+                <Button
                         Margin="0,10,0,0"
                         Padding="10"
                         Command="{Binding DeleteProductCommand}"
@@ -240,32 +240,31 @@
                         FontSize="{StaticResource Text1FontSize}"
                         Style="{StaticResource BadButton}"/>
 
-                </StackPanel>
+            </StackPanel>
 
-                <StackPanel Grid.Column="2" Margin="10,0,10,0">
-                    <Label
+            <StackPanel Grid.Column="2" Margin="10,0,10,0">
+                <Label
                         FontSize="{StaticResource Heading2FontSize}"
                         FontWeight="Bold"
                         Content="Other"/>
 
-                    <Button
+                <Button
                         Margin="0,30,0,0"
                         Padding="10"
                         Command="{Binding ReloadDataCommand}"
                         Content="Reload"
                         FontSize="{StaticResource Text1FontSize}"/>
-                    
-                    <Button
+
+                <Button
                         Margin="0,10,0,0"
                         Padding="10"
                         Command="{Binding DeleteAllProductsCommand}"
                         Content="Delete All Products"
                         FontSize="{StaticResource Text1FontSize}"
                         Style="{StaticResource BadButton}"/>
-                </StackPanel>
-            </Grid>
+            </StackPanel>
+        </Grid>
 
-        </StackPanel>
-    </ScrollViewer>
+    </StackPanel>
 
 </UserControl>

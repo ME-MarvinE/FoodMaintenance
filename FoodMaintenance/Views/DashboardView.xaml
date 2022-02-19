@@ -17,14 +17,14 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="20">
-            
-            <Label
+
+    <StackPanel Margin="20">
+
+        <Label
                 FontSize="{StaticResource Heading1FontSize}"
                 FontWeight="Bold"
                 Content="Dashboard"/>
-            
-        </StackPanel>
-    </ScrollViewer>
+
+    </StackPanel>
+    
 </UserControl>

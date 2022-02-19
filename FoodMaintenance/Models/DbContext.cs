@@ -25,6 +25,8 @@ namespace FoodMaintenance.Models
 
             MapperConfiguration MapperConfig = new MapperConfiguration(config =>
             {
+                config.AllowNullDestinationValues = true;
+
                 config.CreateMap<Product, ProductDTO>()
                     .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
@@ -41,10 +43,12 @@ namespace FoodMaintenance.Models
                     .ForMember(dest => dest.UnitOfMeasurement, opt => opt.MapFrom(src => src.UnitOfMeasurement))
                     .ForMember(dest => dest.UnitOfMeasurementName, opt => opt.MapFrom(src => src.UnitOfMeasurement.Name))
                     .ForMember(dest => dest.IsActive, opt => opt.MapFrom(src => src.IsActive));
+
                 config.CreateMap<ProductType, ProductTypeDTO>()
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
                 config.CreateMap<ProductTypeDTO, ProductType>()
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+
                 config.CreateMap<UnitOfMeasurement, UnitOfMeasurementDTO>()
                     .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
                 config.CreateMap<UnitOfMeasurementDTO, UnitOfMeasurement>()
