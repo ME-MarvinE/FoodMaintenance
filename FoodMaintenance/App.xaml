@@ -8,16 +8,31 @@
 
     <Application.Resources>
 
+        <Color x:Key="PrimaryColor">#8020FF</Color>
+        <SolidColorBrush x:Key="PrimaryColorBrush" Color="{StaticResource PrimaryColor}"/>
+        <Color x:Key="SecondaryColor">#2090FF</Color>
+        <SolidColorBrush x:Key="SecondaryColorBrush" Color="{StaticResource SecondaryColor}"/>
+
+        <Color x:Key="SeparatorColor">#404040</Color>
+        <SolidColorBrush x:Key="SeparatorColorBrush" Color="{StaticResource SeparatorColor}"/>
+        <Color x:Key="OutlineColor">#707070</Color>
+        <SolidColorBrush x:Key="OutlineColorBrush" Color="{StaticResource OutlineColor}"/>
+        <Color x:Key="ValidationErrorColor">Red</Color>
+        <SolidColorBrush x:Key="ValidationErrorColorBrush" Color="{StaticResource ValidationErrorColor}"/>
+
         <Color x:Key="MainBackgroundColor">#201E30</Color>
         <SolidColorBrush x:Key="MainBackgroundColorBrush" Color="{StaticResource MainBackgroundColor}"/>
         <Color x:Key="MainForegroundColor">White</Color>
         <SolidColorBrush x:Key="MainForegroundColorBrush" Color="{StaticResource MainForegroundColor}"/>
+
         <Color x:Key="ContentBackgroundColor">#303040</Color>
         <SolidColorBrush x:Key="ContentBackgroundColorBrush" Color="{StaticResource ContentBackgroundColor}"/>
         <Color x:Key="ContentForegroundColor">White</Color>
         <SolidColorBrush x:Key="ContentForegroundColorBrush" Color="{StaticResource ContentForegroundColor}"/>
+
         <Color x:Key="TitleBarBackgroundColor">#272537</Color>
         <SolidColorBrush x:Key="TitleBarBackgroundColorBrush" Color="{StaticResource TitleBarBackgroundColor}"/>
+
         <Color x:Key="MenuBarBackgroundColor">#1B192B</Color>
         <SolidColorBrush x:Key="MenuBarBackgroundColorBrush" Color="{StaticResource MenuBarBackgroundColor}"/>
         <Color x:Key="MenuBarButtonHover">#373547</Color>
@@ -25,55 +40,64 @@
         <Color x:Key="MenuBarButtonPressed">#413F51</Color>
         <SolidColorBrush x:Key="MenuBarButtonPressedBrush" Color="{StaticResource MenuBarButtonPressed}"/>
 
-        <Color x:Key="SeparatorColor">#404040</Color>
-        <SolidColorBrush x:Key="SeparatorColorBrush" Color="{StaticResource SeparatorColor}"/>
-        <Color x:Key="OutlineColor">#707070</Color>
-        <SolidColorBrush x:Key="OutlineColorBrush" Color="{StaticResource OutlineColor}"/>
-
-        <Color x:Key="MainButtonColor">#404050</Color>
-        <SolidColorBrush x:Key="MainButtonColorBrush" Color="{StaticResource MainButtonColor}"/>
-        <Color x:Key="MainButtonForegroundColor">White</Color>
-        <SolidColorBrush x:Key="MainButtonForegroundColorBrush" Color="{StaticResource MainButtonForegroundColor}"/>
-        <Color x:Key="MainButtonHoverColor">#5A5A6A</Color>
-        <SolidColorBrush x:Key="MainButtonHoverColorBrush" Color="{StaticResource MainButtonHoverColor}"/>
-        <Color x:Key="MainButtonBadHoverColor">#C02A2A</Color>
-        <SolidColorBrush x:Key="MainButtonBadHoverColorBrush" Color="{StaticResource MainButtonBadHoverColor}"/>
-        <Color x:Key="MainButtonBadPressedColor">#F04A4A</Color>
-        <SolidColorBrush x:Key="MainButtonBadPressedColorBrush" Color="{StaticResource MainButtonBadPressedColor}"/>
-        <Color x:Key="MainButtonPressedColor">#1080A0</Color>
-        <SolidColorBrush x:Key="MainButtonPressedColorBrush" Color="{StaticResource MainButtonPressedColor}"/>
+        <Color x:Key="ButtonBackgroundColor">#404050</Color>
+        <SolidColorBrush x:Key="ButtonBackgroundColorBrush" Color="{StaticResource ButtonBackgroundColor}"/>
+        <Color x:Key="ButtonForegroundColor">White</Color>
+        <SolidColorBrush x:Key="ButtonForegroundColorBrush" Color="{StaticResource ButtonForegroundColor}"/>
+        <Color x:Key="ButtonHoverColor">#5A5A6A</Color>
+        <SolidColorBrush x:Key="ButtonHoverColorBrush" Color="{StaticResource ButtonHoverColor}"/>
+        <Color x:Key="ButtonPressedColor">#2090FF</Color>
+        <SolidColorBrush x:Key="ButtonPressedColorBrush" Color="{StaticResource ButtonPressedColor}"/>
+        <Color x:Key="ButtonWarnHoverColor">#C02A2A</Color>
+        <SolidColorBrush x:Key="ButtonWarnHoverColorBrush" Color="{StaticResource ButtonWarnHoverColor}"/>
+        <Color x:Key="ButtonWarnPressedColor">#F04A4A</Color>
+        <SolidColorBrush x:Key="ButtonWarnPressedColorBrush" Color="{StaticResource ButtonWarnPressedColor}"/>
 
         <Color x:Key="WindowButtonHoverColor">#373547</Color>
         <SolidColorBrush x:Key="WindowButtonHoverColorBrush" Color="{StaticResource WindowButtonHoverColor}"/>
         <Color x:Key="WindowButtonPressedColor">#009FAF</Color>
         <SolidColorBrush x:Key="WindowButtonPressedColorBrush" Color="{StaticResource WindowButtonPressedColor}"/>
 
-        <Color x:Key="MainInputColor">#303030</Color>
-        <SolidColorBrush x:Key="MainInputColorBrush" Color="{StaticResource MainInputColor}"/>
-        <Color x:Key="MainInputForegroundColor">White</Color>
-        <SolidColorBrush x:Key="MainInputForegroundColorBrush" Color="{StaticResource MainInputForegroundColor}"/>
+        <Color x:Key="InputBackgroundColor">#303030</Color>
+        <SolidColorBrush x:Key="InputBackgroundColorBrush" Color="{StaticResource InputBackgroundColor}"/>
+        <Color x:Key="InputForegroundColor">White</Color>
+        <SolidColorBrush x:Key="InputForegroundColorBrush" Color="{StaticResource InputForegroundColor}"/>
 
-        <Color x:Key="ValidationErrorColor">Red</Color>
-        <SolidColorBrush x:Key="ValidationErrorColorBrush" Color="{StaticResource ValidationErrorColor}"/>
-        
         <System:Double x:Key="Heading1FontSize">28</System:Double>
         <System:Double x:Key="Heading2FontSize">20</System:Double>
         <System:Double x:Key="Heading3FontSize">16</System:Double>
         <System:Double x:Key="Text1FontSize">14</System:Double>
 
         <Style TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="{StaticResource MainButtonColorBrush}"/>
-            <Setter Property="Foreground" Value="{StaticResource MainButtonForegroundColorBrush}"/>
+            <Setter Property="Background" Value="{StaticResource ButtonBackgroundColorBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource ButtonForegroundColorBrush}"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
+                    <ControlTemplate TargetType="{x:Type Button}">
                         <Border
                             Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}"
                             HorizontalAlignment="{Binding HorizontalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
                             VerticalAlignment="{Binding VerticalAlignment, RelativeSource={RelativeSource TemplatedParent}}"
-                            Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}">
-                            <ContentPresenter HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            Background="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"
+                            CornerRadius="5">
+
+                            <Label
+                                HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                Foreground="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}">
+                                <Label.Style>
+                                    <Style TargetType="{x:Type Label}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}}" Value="False">
+                                                <Setter Property="Opacity" Value="0.3"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -81,10 +105,10 @@
 
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource MainButtonHoverColorBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource ButtonHoverColorBrush}"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="{StaticResource MainButtonPressedColorBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource ButtonPressedColorBrush}"/>
                 </Trigger>
             </Style.Triggers>
 
@@ -96,21 +120,21 @@
             TargetType="{x:Type Button}">
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource MainButtonBadHoverColorBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource ButtonWarnHoverColorBrush}"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="{StaticResource MainButtonBadPressedColorBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource ButtonWarnPressedColorBrush}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <Style TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="{StaticResource MainInputColorBrush}"/>
-            <Setter Property="Foreground" Value="{StaticResource MainInputForegroundColorBrush}"/>
+            <Setter Property="Background" Value="{StaticResource InputBackgroundColorBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource InputForegroundColorBrush}"/>
         </Style>
 
         <Style TargetType="{x:Type CheckBox}">
-            <Setter Property="Foreground" Value="{StaticResource MainInputForegroundColorBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource InputForegroundColorBrush}"/>
         </Style>
 
         <Style TargetType="{x:Type Label}">
@@ -119,30 +143,30 @@
 
         <ValidationRules:StringValidationRule
             x:Key="NotNullOrWhiteSpaceValidationRule"
-            ValidatesOnTargetUpdated="True"
-            NullOrWhiteSpaceCheck="True"/>
+            NullOrWhiteSpaceCheck="True"
+            ValidatesOnTargetUpdated="True"/>
         <ValidationRules:StringValidationRule
             x:Key="NumericValidationRule"
-            ValidatesOnTargetUpdated="True"
             RegexPattern="^ *[0-9]+ *$"
-            RegexPatternErrorMessage="Must be a number."/>
+            RegexPatternErrorMessage="Must be a number."
+            ValidatesOnTargetUpdated="True"/>
         <ValidationRules:ObjectValidationRule
             x:Key="NotNullValidationRule"
-            ValidatesOnTargetUpdated="True"
-            NullCheck="True"/>
+            NullCheck="True"
+            ValidatesOnTargetUpdated="True"/>
         <ControlTemplate x:Key="ValidationRuleErrorTemplate">
             <Grid>
                 <Polygon
+                    Margin="0,1,1,0"
                     HorizontalAlignment="Right"
                     Fill="{StaticResource ValidationErrorColorBrush}"
                     Points="9, 9, 9, 0, 0, 0"
                     Stroke="{StaticResource ValidationErrorColorBrush}"
                     StrokeThickness="1"
-                    ToolTip="{Binding ErrorContent}"
-                    Margin="0,1,1,0"/>
+                    ToolTip="{Binding ErrorContent}"/>
 
                 <Border BorderBrush="{StaticResource ValidationErrorColorBrush}" BorderThickness="1"/>
-                
+
                 <AdornedElementPlaceholder/>
             </Grid>
         </ControlTemplate>
