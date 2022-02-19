@@ -6,7 +6,6 @@ namespace FoodMaintenance.ValidationRules
 {
     public class StringValidationRule : ValidationRule
     {
-        public bool AllowNull { get; set; }
         public bool AllowEmpty { get; set; }
         public bool AllowWhiteSpace { get; set; }
         public int? MinCharacterCount { get; set; }
@@ -17,7 +16,6 @@ namespace FoodMaintenance.ValidationRules
         {
             string? ValueString = value as string;
 
-            if (!AllowNull && ValueString == null) { return new ValidationResult(false, $"Must not be null."); }
             if (!AllowEmpty && string.IsNullOrEmpty(ValueString)) { return new ValidationResult(false, $"Must not be empty."); }
             if (!AllowWhiteSpace && string.IsNullOrWhiteSpace(ValueString)) { return new ValidationResult(false, $"Must not be whitespace."); }
 

@@ -115,9 +115,18 @@
 
         <ValidationRules:StringValidationRule
             x:Key="NotNullOrWhiteSpaceValidationRule"
+            ValidatesOnTargetUpdated="True"
             AllowEmpty="False"
-            AllowNull="False"
             AllowWhiteSpace="False"/>
+        <ValidationRules:StringValidationRule
+            x:Key="NumericValidationRule"
+            ValidatesOnTargetUpdated="True"
+            RegexPattern="^ *[0-9]+ *$"
+            RegexErrorString="Must be a number."/>
+        <ValidationRules:ObjectValidationRule
+            x:Key="NotNullValidationRule"
+            ValidatesOnTargetUpdated="True"
+            AllowNull="False"/>
         <ControlTemplate x:Key="ValidationRuleErrorTemplate">
             <Grid>
                 <Polygon

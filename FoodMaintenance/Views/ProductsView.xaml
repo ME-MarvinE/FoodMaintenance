@@ -20,25 +20,25 @@
     <StackPanel Margin="20">
 
         <Label
-                FontSize="{StaticResource Heading1FontSize}"
-                FontWeight="Bold"
-                Content="Products"/>
+            Content="Products"
+            FontSize="{StaticResource Heading1FontSize}"
+            FontWeight="Bold"/>
 
         <DataGrid
-                Height="300"
-                Margin="50,30,50,0"
-                AlternatingRowBackground="#808090"
-                AutoGenerateColumns="False"
-                Background="Transparent"
-                CanUserAddRows="False"
-                CanUserDeleteRows="False"
-                Foreground="White"
-                HorizontalScrollBarVisibility="Auto"
-                IsReadOnly="True"
-                ItemsSource="{Binding Products}"
-                RowBackground="#505060"
-                SelectedItem="{Binding SelectedProduct}"
-                VerticalScrollBarVisibility="Auto">
+            Height="300"
+            Margin="50,30,50,0"
+            AlternatingRowBackground="#808090"
+            AutoGenerateColumns="False"
+            Background="Transparent"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            Foreground="White"
+            HorizontalScrollBarVisibility="Auto"
+            IsReadOnly="True"
+            ItemsSource="{Binding Products}"
+            RowBackground="#505060"
+            SelectedItem="{Binding SelectedProduct}"
+            VerticalScrollBarVisibility="Auto">
             <DataGrid.ColumnHeaderStyle>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Foreground" Value="Black"/>
@@ -76,76 +76,144 @@
             <StackPanel Grid.Column="0" Margin="10,0,10,0">
 
                 <Label
-                        FontSize="{StaticResource Heading2FontSize}"
-                        FontWeight="Bold"
-                        Content="Create"/>
+                    Content="Create"
+                    FontSize="{StaticResource Heading2FontSize}"
+                    FontWeight="Bold"/>
 
                 <Label
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Heading3FontSize}"
-                        Content="Name"/>
+                    Margin="0,5,0,0"
+                    Content="Name"
+                    FontSize="{StaticResource Heading3FontSize}"/>
                 <TextBox
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Text1FontSize}"
-                        Text="{Binding ProductToAdd.Name}"/>
+                    x:Name="ProductToAddNameTextBox"
+                    Margin="0,5,0,0"
+                    FontSize="{StaticResource Text1FontSize}"
+                    Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                    <TextBox.Text>
+                        <Binding
+                            Path="ProductToAdd.Name"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <StaticResource ResourceKey="NotNullOrWhiteSpaceValidationRule"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <Label
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Heading3FontSize}"
-                        Content="Type">
-                </Label>
+                    Margin="0,5,0,0"
+                    Content="Type"
+                    FontSize="{StaticResource Heading3FontSize}"/>
                 <ComboBox
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Text1FontSize}"
-                        IsTextSearchEnabled="True"
-                        ItemsSource="{Binding ProductTypes}"
-                        SelectedItem="{Binding ProductToAdd.Type}">
+                    x:Name="ProductToAddTypeComboBox"
+                    Margin="0,5,0,0"
+                    FontSize="{StaticResource Text1FontSize}"
+                    IsTextSearchEnabled="True"
+                    ItemsSource="{Binding ProductTypes}"
+                    Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+
+                    <ComboBox.SelectedItem>
+                        <Binding
+                            Path="ProductToAdd.Type"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <StaticResource ResourceKey="NotNullValidationRule"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
+
                     <ComboBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
                             <TextBlock Text="{Binding Name}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+
                 </ComboBox>
 
                 <Label
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Heading3FontSize}"
-                        Content="Minimum Stock Quantity"/>
+                    Margin="0,5,0,0"
+                    Content="Minimum Stock Quantity"
+                    FontSize="{StaticResource Heading3FontSize}"/>
                 <TextBox
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Text1FontSize}"
-                        Text="{Binding ProductToAdd.MinStockQuantity}"/>
+                    x:Name="ProductToAddMinStockQuantityTextBox"
+                    Margin="0,5,0,0"
+                    FontSize="{StaticResource Text1FontSize}"
+                    Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                    <TextBox.Text>
+                        <Binding
+                            Path="ProductToAdd.MinStockQuantity"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <StaticResource ResourceKey="NumericValidationRule"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <Label
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Heading3FontSize}"
-                        Content="Unit Of Measurement"/>
+                    Margin="0,5,0,0"
+                    Content="Unit Of Measurement"
+                    FontSize="{StaticResource Heading3FontSize}"/>
                 <ComboBox
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Text1FontSize}"
-                        IsTextSearchEnabled="True"
-                        ItemsSource="{Binding UnitsOfMeasurement}"
-                        SelectedItem="{Binding ProductToAdd.UnitOfMeasurement}">
+                    x:Name="ProductToAddUnitOfMeasurementComboBox"
+                    Margin="0,5,0,0"
+                    FontSize="{StaticResource Text1FontSize}"
+                    IsTextSearchEnabled="True"
+                    ItemsSource="{Binding UnitsOfMeasurement}"
+                    Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+
+                    <ComboBox.SelectedItem>
+                        <Binding
+                            Path="ProductToAdd.UnitOfMeasurement"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <StaticResource ResourceKey="NotNullValidationRule"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
+
                     <ComboBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
                             <TextBlock Text="{Binding Name}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+
                 </ComboBox>
 
                 <CheckBox
-                        Margin="0,5,0,0"
-                        VerticalContentAlignment="Center"
-                        Content="Active"
-                        FontSize="{StaticResource Heading3FontSize}"
-                        IsChecked="{Binding ProductToAdd.IsActive}"/>
+                    Margin="0,5,0,0"
+                    VerticalContentAlignment="Center"
+                    Content="Active"
+                    FontSize="{StaticResource Heading3FontSize}"
+                    IsChecked="{Binding ProductToAdd.IsActive}"/>
 
                 <Button
-                        Margin="0,10,0,0"
-                        Padding="10"
-                        Command="{Binding AddProductCommand}"
-                        Content="Create"
-                        FontSize="{StaticResource Text1FontSize}"/>
+                    Margin="0,10,0,0"
+                    Padding="10"
+                    Command="{Binding AddProductCommand}"
+                    Content="Create"
+                    FontSize="{StaticResource Text1FontSize}">
+                    <Button.Style>
+                        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                            <Setter Property="IsEnabled" Value="False"/>
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding (Validation.HasError), ElementName=ProductToAddNameTextBox}" Value="False"/>
+                                        <Condition Binding="{Binding (Validation.HasError), ElementName=ProductToAddTypeComboBox}" Value="False"/>
+                                        <Condition Binding="{Binding (Validation.HasError), ElementName=ProductToAddMinStockQuantityTextBox}" Value="False"/>
+                                        <Condition Binding="{Binding (Validation.HasError), ElementName=ProductToAddUnitOfMeasurementComboBox}" Value="False"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
 
             </StackPanel>
 
@@ -162,106 +230,175 @@
                 </StackPanel.Style>
 
                 <Label
-                        FontSize="{StaticResource Heading2FontSize}"
-                        FontWeight="Bold"
-                        Content="Update"/>
+                    Content="Update"
+                    FontSize="{StaticResource Heading2FontSize}"
+                    FontWeight="Bold"/>
 
                 <Label
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Heading3FontSize}"
-                        Content="Name"/>
+                    Margin="0,5,0,0"
+                    Content="Name"
+                    FontSize="{StaticResource Heading3FontSize}"/>
                 <TextBox
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Text1FontSize}"
-                        Text="{Binding SelectedProduct.Name}"/>
+                    x:Name="SelectedProductNameTextBox"
+                    Margin="0,5,0,0"
+                    FontSize="{StaticResource Text1FontSize}"
+                    Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                    <TextBox.Text>
+                        <Binding
+                            Path="SelectedProduct.Name"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <StaticResource ResourceKey="NotNullOrWhiteSpaceValidationRule"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <Label
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Heading3FontSize}"
-                        Content="Type"/>
+                    Margin="0,5,0,0"
+                    Content="Type"
+                    FontSize="{StaticResource Heading3FontSize}"/>
                 <ComboBox
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Text1FontSize}"
-                        IsTextSearchEnabled="True"
-                        ItemsSource="{Binding ProductTypes}"
-                        SelectedItem="{Binding SelectedProduct.Type}">
+                    x:Name="SelectedProductTypeComboBox"
+                    Margin="0,5,0,0"
+                    FontSize="{StaticResource Text1FontSize}"
+                    IsTextSearchEnabled="True"
+                    ItemsSource="{Binding ProductTypes}"
+                    Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+
+                    <ComboBox.SelectedItem>
+                        <Binding
+                            Path="SelectedProduct.Type"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <StaticResource ResourceKey="NotNullValidationRule"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
+
                     <ComboBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type Models:ProductTypeDTO}">
                             <TextBlock Text="{Binding Name}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+
                 </ComboBox>
 
                 <Label
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Heading3FontSize}"
-                        Content="Minimum Stock Quantity"/>
+                    Margin="0,5,0,0"
+                    Content="Minimum Stock Quantity"
+                    FontSize="{StaticResource Heading3FontSize}"/>
                 <TextBox
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Text1FontSize}"
-                        Text="{Binding SelectedProduct.MinStockQuantity}"/>
+                    x:Name="SelectedProductMinStockQuantityTextBox"
+                    Margin="0,5,0,0"
+                    FontSize="{StaticResource Text1FontSize}"
+                    Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                    <TextBox.Text>
+                        <Binding
+                            Path="SelectedProduct.MinStockQuantity"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <StaticResource ResourceKey="NumericValidationRule"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <Label
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Heading3FontSize}"
-                        Content="Unit Of Measurement"/>
+                    Margin="0,5,0,0"
+                    Content="Unit Of Measurement"
+                    FontSize="{StaticResource Heading3FontSize}"/>
                 <ComboBox
-                        Margin="0,5,0,0"
-                        FontSize="{StaticResource Text1FontSize}"
-                        IsTextSearchEnabled="True"
-                        ItemsSource="{Binding UnitsOfMeasurement}"
-                        SelectedItem="{Binding SelectedProduct.UnitOfMeasurement}">
+                    x:Name="SelectedProductUnitOfMeasurementComboBox"
+                    Margin="0,5,0,0"
+                    FontSize="{StaticResource Text1FontSize}"
+                    IsTextSearchEnabled="True"
+                    ItemsSource="{Binding UnitsOfMeasurement}"
+                    Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+
+                    <ComboBox.SelectedItem>
+                        <Binding
+                            Path="SelectedProduct.UnitOfMeasurement"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnDataErrors="True">
+                            <Binding.ValidationRules>
+                                <StaticResource ResourceKey="NotNullValidationRule"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
+
                     <ComboBox.ItemTemplate>
                         <DataTemplate DataType="{x:Type Models:UnitOfMeasurementDTO}">
                             <TextBlock Text="{Binding Name}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+
                 </ComboBox>
 
                 <CheckBox
-                        Margin="0,5,0,0"
-                        VerticalContentAlignment="Center"
-                        Content="Active"
-                        FontSize="{StaticResource Heading3FontSize}"
-                        IsChecked="{Binding SelectedProduct.IsActive}"/>
+                    Margin="0,5,0,0"
+                    VerticalContentAlignment="Center"
+                    Content="Active"
+                    FontSize="{StaticResource Heading3FontSize}"
+                    IsChecked="{Binding SelectedProduct.IsActive}"/>
 
                 <Button
-                        Margin="0,10,0,0"
-                        Padding="10"
-                        Command="{Binding UpdateProductCommand}"
-                        Content="Update"
-                        FontSize="{StaticResource Text1FontSize}"/>
+                    Margin="0,10,0,0"
+                    Padding="10"
+                    Command="{Binding UpdateProductCommand}"
+                    Content="Update"
+                    FontSize="{StaticResource Text1FontSize}">
+                    <Button.Style>
+                        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                            <Setter Property="IsEnabled" Value="False"/>
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding (Validation.HasError), ElementName=SelectedProductNameTextBox}" Value="False"/>
+                                        <Condition Binding="{Binding (Validation.HasError), ElementName=SelectedProductTypeComboBox}" Value="False"/>
+                                        <Condition Binding="{Binding (Validation.HasError), ElementName=SelectedProductMinStockQuantityTextBox}" Value="False"/>
+                                        <Condition Binding="{Binding (Validation.HasError), ElementName=SelectedProductUnitOfMeasurementComboBox}" Value="False"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
 
                 <Button
-                        Margin="0,10,0,0"
-                        Padding="10"
-                        Command="{Binding DeleteProductCommand}"
-                        Content="Delete"
-                        FontSize="{StaticResource Text1FontSize}"
-                        Style="{StaticResource BadButton}"/>
+                    Margin="0,10,0,0"
+                    Padding="10"
+                    Command="{Binding DeleteProductCommand}"
+                    Content="Delete"
+                    FontSize="{StaticResource Text1FontSize}"
+                    Style="{StaticResource BadButton}"/>
 
             </StackPanel>
 
             <StackPanel Grid.Column="2" Margin="10,0,10,0">
                 <Label
-                        FontSize="{StaticResource Heading2FontSize}"
-                        FontWeight="Bold"
-                        Content="Other"/>
+                    Content="Other"
+                    FontSize="{StaticResource Heading2FontSize}"
+                    FontWeight="Bold"/>
 
                 <Button
-                        Margin="0,30,0,0"
-                        Padding="10"
-                        Command="{Binding ReloadDataCommand}"
-                        Content="Reload"
-                        FontSize="{StaticResource Text1FontSize}"/>
+                    Margin="0,30,0,0"
+                    Padding="10"
+                    Command="{Binding ReloadDataCommand}"
+                    Content="Reload"
+                    FontSize="{StaticResource Text1FontSize}"/>
 
                 <Button
-                        Margin="0,10,0,0"
-                        Padding="10"
-                        Command="{Binding DeleteAllProductsCommand}"
-                        Content="Delete All Products"
-                        FontSize="{StaticResource Text1FontSize}"
-                        Style="{StaticResource BadButton}"/>
+                    Margin="0,10,0,0"
+                    Padding="10"
+                    Command="{Binding DeleteAllProductsCommand}"
+                    Content="Delete All Products"
+                    FontSize="{StaticResource Text1FontSize}"
+                    Style="{StaticResource BadButton}"/>
             </StackPanel>
         </Grid>
 
