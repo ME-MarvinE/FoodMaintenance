@@ -36,25 +36,9 @@
             CornerRadius="15">
 
             <DataGrid
-                Height="300"
-                AlternatingRowBackground="#808090"
-                AutoGenerateColumns="False"
-                Background="Transparent"
-                BorderThickness="0"
-                CanUserAddRows="False"
-                CanUserDeleteRows="False"
-                Foreground="White"
-                HorizontalScrollBarVisibility="Auto"
-                IsReadOnly="True"
                 ItemsSource="{Binding ProductTypes}"
-                RowBackground="#505060"
                 SelectedItem="{Binding SelectedProductType}"
-                VerticalScrollBarVisibility="Auto">
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Foreground" Value="Black"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
+                Style="{StaticResource MainDataGridStyle}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
                 </DataGrid.Columns>
