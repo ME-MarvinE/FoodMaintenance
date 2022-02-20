@@ -17,6 +17,22 @@ namespace FoodMaintenance.ViewModels
         public List<ProductDTO> Products { get; set; } = new List<ProductDTO>();
         public List<ProductTypeDTO> ProductTypes { get; set; } = new List<ProductTypeDTO>();
         public List<UnitOfMeasurementDTO> UnitsOfMeasurement { get; set; } = new List<UnitOfMeasurementDTO>();
+        public List<ProductDTO> DummyProducts { get; set; } = new List<ProductDTO>()
+        {
+            new ProductDTO(),
+            new ProductDTO(),
+            new ProductDTO(),
+            new ProductDTO(),
+            new ProductDTO(),
+            new ProductDTO(),
+            new ProductDTO(),
+            new ProductDTO(),
+            new ProductDTO(),
+            new ProductDTO(),
+            new ProductDTO(),
+            new ProductDTO(),
+        };
+        public bool IsLoadingData { get; set; }
 
         #endregion
 
@@ -35,7 +51,7 @@ namespace FoodMaintenance.ViewModels
             GetProductsCommand = new RelayCommand(async () => { await GetProducts(); });
             GetProductTypesCommand = new RelayCommand(async () => { await GetProductTypes(); });
             GetUnitsOfMeasurementCommand = new RelayCommand(async () => { await GetUnitsOfMeasurement(); });
-            ReloadDataCommand = new RelayCommand(async () => { await ReloadData(); });
+            ReloadDataCommand = new RelayCommand(async () => { await ReloadData(); }, canExecute: () => { return !IsLoadingData; });
 
             _DbContext = DbContext;
         }
@@ -44,9 +60,13 @@ namespace FoodMaintenance.ViewModels
         #region Methods
         public async Task ReloadData()
         {
+            IsLoadingData = true;
+            //Default delay to simulate loading.
+            await Task.Delay(750);
             await GetProducts();
             await GetProductTypes();
             await GetUnitsOfMeasurement();
+            IsLoadingData = false;
         }
         public async Task GetProducts()
         {
