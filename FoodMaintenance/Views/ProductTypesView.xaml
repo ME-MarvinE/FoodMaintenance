@@ -38,6 +38,7 @@
                 SelectedItem="{Binding SelectedProductType}"
                 Style="{StaticResource MainDataGridStyle}">
                 <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="Id"/>
                     <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
                 </DataGrid.Columns>
             </DataGrid>

@@ -91,7 +91,7 @@ namespace FoodMaintenance.ViewModels
         {
             if (SelectedProductType != null)
             {
-                await _DbContext.DeleteProductType(SelectedProductType.Name);
+                await _DbContext.DeleteProductType(SelectedProductType);
             }
 
             await ReloadData();

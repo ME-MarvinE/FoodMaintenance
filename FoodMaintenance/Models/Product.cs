@@ -12,13 +12,13 @@ namespace FoodMaintenance.Models
         [NotNull]
         public string? Name { get; set; }
         [ForeignKey(typeof(ProductType))]
-        public string? TypeName { get; set; }
+        public int TypeId { get; set; }
         [ManyToOne]
         public ProductType? Type { get; set; }
         [NotNull]
         public float MinStockQuantity { get; set; }
         [ForeignKey(typeof(UnitOfMeasurement))]
-        public string? UnitOfMeasurementName { get; set; }
+        public int UnitOfMeasurementId { get; set; }
         [ManyToOne]
         public UnitOfMeasurement? UnitOfMeasurement { get; set; }
         [NotNull]

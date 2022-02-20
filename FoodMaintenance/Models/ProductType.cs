@@ -8,7 +8,9 @@ namespace FoodMaintenance.Models
     public class ProductType
     {
         #region Properties
-        [PrimaryKey, NotNull]
+        [PrimaryKey, AutoIncrement, NotNull]
+        public int Id { get; set; }
+        [NotNull]
         public string? Name { get; set; }
         [OneToMany]
         public List<Product>? Products { get; set; }

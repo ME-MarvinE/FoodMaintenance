@@ -91,7 +91,7 @@ namespace FoodMaintenance.ViewModels
         {
             if (SelectedUnitOfMeasurement != null)
             {
-                await _DbContext.DeleteUnitOfMeasurement(SelectedUnitOfMeasurement.Name);
+                await _DbContext.DeleteUnitOfMeasurement(SelectedUnitOfMeasurement);
             }
 
             await ReloadData();
