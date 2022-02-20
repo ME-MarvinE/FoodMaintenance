@@ -12,7 +12,7 @@ namespace FoodMaintenance.Models
         public int Id { get; set; }
         [NotNull]
         public string? Name { get; set; }
-        [OneToMany]
+        [OneToMany(CascadeOperations = CascadeOperation.All, ReadOnly = true)]
         public List<Product>? Products { get; set; }
         #endregion
     }
