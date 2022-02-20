@@ -6,6 +6,9 @@ using System.Runtime.CompilerServices;
 
 namespace FoodMaintenance.ViewModels
 {
+    /// <summary>
+    /// Base implementation of a ViewModel implementing <see cref="INotifyPropertyChanged"/> and injected with a <see cref="INavigationService"/>.
+    /// </summary>
     [AddINotifyPropertyChangedInterface]
     public class BaseViewModel : INotifyPropertyChanged, IDisposable
     {

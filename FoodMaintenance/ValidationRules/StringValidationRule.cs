@@ -4,6 +4,9 @@ using System.Windows.Controls;
 
 namespace FoodMaintenance.ValidationRules
 {
+    /// <summary>
+    /// A class providing validation related to a <see cref="string"/>.
+    /// </summary>
     public class StringValidationRule : ValidationRule
     {
         public bool NullOrEmptyCheck { get; set; }

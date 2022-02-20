@@ -3,6 +3,9 @@ using System;
 
 namespace FoodMaintenance.Interfaces
 {
+    /// <summary>
+    /// An interface for service providing methods to navigate between ViewModels.
+    /// </summary>
     public interface INavigationService
     {
         #region Properties

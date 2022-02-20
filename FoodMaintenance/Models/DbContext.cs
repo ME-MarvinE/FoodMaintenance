@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace FoodMaintenance.Models
 {
+    /// <summary>
+    /// A class responsible for communicating with an SQLite database.
+    /// </summary>
     public class DbContext
     {
         #region Fields

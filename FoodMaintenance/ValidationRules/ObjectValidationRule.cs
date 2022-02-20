@@ -3,6 +3,9 @@ using System.Windows.Controls;
 
 namespace FoodMaintenance.ValidationRules
 {
+    /// <summary>
+    /// A class providing validation related to an <see cref="object"/>.
+    /// </summary>
     public class ObjectValidationRule : ValidationRule
     {
         public bool NullCheck { get; set; }

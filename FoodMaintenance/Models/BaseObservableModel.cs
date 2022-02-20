@@ -4,6 +4,9 @@ using System.Runtime.CompilerServices;
 
 namespace FoodMaintenance.Models
 {
+    /// <summary>
+    /// Base implementation of a model implementing <see cref="INotifyPropertyChanged"/>
+    /// </summary>
     [AddINotifyPropertyChangedInterface]
     public class BaseObservableModel : INotifyPropertyChanged
     {
