@@ -1,11 +1,11 @@
 ﻿<UserControl
     x:Class="FoodMaintenance.Views.ProductsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Models="clr-namespace:FoodMaintenance.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Models="clr-namespace:FoodMaintenance.Models"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -97,7 +97,7 @@
                         x:Name="ProductToAddNameTextBox"
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
-                        Style="{StaticResource CreateTextBoxStyle}">
+                        Validation.ErrorTemplate="{x:Null}">
                         <TextBox.Text>
                             <Binding
                                 Path="ProductToAdd.Name"
@@ -110,6 +110,23 @@
                         </TextBox.Text>
                     </TextBox>
 
+                    <TextBlock Foreground="{StaticResource ValidationErrorColorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=ProductToAddNameTextBox}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=CreateValidationControl}" Value="True"/>
+                                            <Condition Binding="{Binding (Validation.HasError), ElementName=ProductToAddNameTextBox}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <Label
                         Margin="0,5,0,0"
                         Content="Type"
@@ -120,7 +137,7 @@
                         FontSize="{StaticResource Text1FontSize}"
                         IsTextSearchEnabled="True"
                         ItemsSource="{Binding ProductTypes}"
-                        Style="{StaticResource CreateComboBoxStyle}">
+                        Validation.ErrorTemplate="{x:Null}">
 
                         <ComboBox.SelectedItem>
                             <Binding
@@ -141,6 +158,23 @@
 
                     </ComboBox>
 
+                    <TextBlock Foreground="{StaticResource ValidationErrorColorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=ProductToAddTypeComboBox}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=CreateValidationControl}" Value="True"/>
+                                            <Condition Binding="{Binding (Validation.HasError), ElementName=ProductToAddTypeComboBox}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <Label
                         Margin="0,5,0,0"
                         Content="Minimum Stock Quantity"
@@ -149,7 +183,7 @@
                         x:Name="ProductToAddMinStockQuantityTextBox"
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
-                        Style="{StaticResource CreateTextBoxStyle}">
+                        Validation.ErrorTemplate="{x:Null}">
                         <TextBox.Text>
                             <Binding
                                 Path="ProductToAdd.MinStockQuantity"
@@ -162,6 +196,23 @@
                         </TextBox.Text>
                     </TextBox>
 
+                    <TextBlock Foreground="{StaticResource ValidationErrorColorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=ProductToAddMinStockQuantityTextBox}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=CreateValidationControl}" Value="True"/>
+                                            <Condition Binding="{Binding (Validation.HasError), ElementName=ProductToAddMinStockQuantityTextBox}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <Label
                         Margin="0,5,0,0"
                         Content="Unit Of Measurement"
@@ -172,7 +223,7 @@
                         FontSize="{StaticResource Text1FontSize}"
                         IsTextSearchEnabled="True"
                         ItemsSource="{Binding UnitsOfMeasurement}"
-                        Style="{StaticResource CreateComboBoxStyle}">
+                        Validation.ErrorTemplate="{x:Null}">
 
                         <ComboBox.SelectedItem>
                             <Binding
@@ -192,6 +243,23 @@
                         </ComboBox.ItemTemplate>
 
                     </ComboBox>
+
+                    <TextBlock Foreground="{StaticResource ValidationErrorColorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=ProductToAddUnitOfMeasurementComboBox}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=CreateValidationControl}" Value="True"/>
+                                            <Condition Binding="{Binding (Validation.HasError), ElementName=ProductToAddUnitOfMeasurementComboBox}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
 
                     <CheckBox
                         Margin="0,5,0,0"
@@ -262,7 +330,7 @@
                         x:Name="SelectedProductNameTextBox"
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
-                        Style="{StaticResource UpdateTextBoxStyle}">
+                        Validation.ErrorTemplate="{x:Null}">
                         <TextBox.Text>
                             <Binding
                                 Path="SelectedProduct.Name"
@@ -275,6 +343,24 @@
                         </TextBox.Text>
                     </TextBox>
 
+                    <TextBlock Foreground="{StaticResource ValidationErrorColorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=SelectedProductNameTextBox}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=UpdateValidationControl}" Value="True"/>
+                                            <Condition Binding="{Binding (Validation.HasError), ElementName=SelectedProductNameTextBox}" Value="True"/>
+                                            <Condition Binding="{Binding IsEnabled, ElementName=SelectedProductNameTextBox}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <Label
                         Margin="0,5,0,0"
                         Content="Type"
@@ -285,7 +371,7 @@
                         FontSize="{StaticResource Text1FontSize}"
                         IsTextSearchEnabled="True"
                         ItemsSource="{Binding ProductTypes}"
-                        Style="{StaticResource UpdateComboBoxStyle}">
+                        Validation.ErrorTemplate="{x:Null}">
 
                         <ComboBox.SelectedItem>
                             <Binding
@@ -306,6 +392,24 @@
 
                     </ComboBox>
 
+                    <TextBlock Foreground="{StaticResource ValidationErrorColorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=SelectedProductTypeComboBox}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=UpdateValidationControl}" Value="True"/>
+                                            <Condition Binding="{Binding (Validation.HasError), ElementName=SelectedProductTypeComboBox}" Value="True"/>
+                                            <Condition Binding="{Binding IsEnabled, ElementName=SelectedProductTypeComboBox}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <Label
                         Margin="0,5,0,0"
                         Content="Minimum Stock Quantity"
@@ -314,7 +418,7 @@
                         x:Name="SelectedProductMinStockQuantityTextBox"
                         Margin="0,5,0,0"
                         FontSize="{StaticResource Text1FontSize}"
-                        Style="{StaticResource UpdateTextBoxStyle}">
+                        Validation.ErrorTemplate="{x:Null}">
                         <TextBox.Text>
                             <Binding
                                 Path="SelectedProduct.MinStockQuantity"
@@ -327,6 +431,24 @@
                         </TextBox.Text>
                     </TextBox>
 
+                    <TextBlock Foreground="{StaticResource ValidationErrorColorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=SelectedProductMinStockQuantityTextBox}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=UpdateValidationControl}" Value="True"/>
+                                            <Condition Binding="{Binding (Validation.HasError), ElementName=SelectedProductMinStockQuantityTextBox}" Value="True"/>
+                                            <Condition Binding="{Binding IsEnabled, ElementName=SelectedProductMinStockQuantityTextBox}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
                     <Label
                         Margin="0,5,0,0"
                         Content="Unit Of Measurement"
@@ -337,7 +459,7 @@
                         FontSize="{StaticResource Text1FontSize}"
                         IsTextSearchEnabled="True"
                         ItemsSource="{Binding UnitsOfMeasurement}"
-                        Validation.ErrorTemplate="{StaticResource ValidationRuleErrorTemplate}">
+                        Validation.ErrorTemplate="{x:Null}">
 
                         <ComboBox.SelectedItem>
                             <Binding
@@ -357,6 +479,24 @@
                         </ComboBox.ItemTemplate>
 
                     </ComboBox>
+
+                    <TextBlock Foreground="{StaticResource ValidationErrorColorBrush}" Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=SelectedProductUnitOfMeasurementComboBox}">
+                        <TextBlock.Style>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding IsMouseOver, ElementName=UpdateValidationControl}" Value="True"/>
+                                            <Condition Binding="{Binding (Validation.HasError), ElementName=SelectedProductUnitOfMeasurementComboBox}" Value="True"/>
+                                            <Condition Binding="{Binding IsEnabled, ElementName=SelectedProductUnitOfMeasurementComboBox}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
 
                     <CheckBox
                         Margin="0,5,0,0"

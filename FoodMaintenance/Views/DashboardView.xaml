@@ -151,7 +151,7 @@
                                 <TextBlock
                                     FontSize="{StaticResource Heading3FontSize}"
                                     Foreground="{StaticResource ContentForegroundColorBrush}"
-                                    Text="{Binding MinStockQuantity, StringFormat='Min Stock: {0}'}"/>
+                                    Text="{Binding MinStockQuantity, StringFormat='Min: {0}'}"/>
                                 <TextBlock
                                     Margin="5,0,0,0"
                                     FontSize="{StaticResource Heading3FontSize}"

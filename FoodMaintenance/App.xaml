@@ -88,23 +88,6 @@
             NullCheck="True"
             ValidatesOnTargetUpdated="True"/>
 
-        <ControlTemplate x:Key="ValidationRuleErrorTemplate">
-            <Grid>
-                <Polygon
-                    Margin="0,1,1,0"
-                    HorizontalAlignment="Right"
-                    Fill="{StaticResource ValidationErrorColorBrush}"
-                    Points="9, 9, 9, 0, 0, 0"
-                    Stroke="{StaticResource ValidationErrorColorBrush}"
-                    StrokeThickness="1"
-                    ToolTip="{Binding ErrorContent}"/>
-
-                <Border BorderBrush="{StaticResource ValidationErrorColorBrush}" BorderThickness="1"/>
-
-                <AdornedElementPlaceholder/>
-            </Grid>
-        </ControlTemplate>
-
         <Style x:Key="CustomColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
             <Setter Property="Width" Value="3"/>
             <Setter Property="Background" Value="#30FFFFFF"/>
@@ -265,50 +248,6 @@
 
         <Style TargetType="{x:Type CheckBox}">
             <Setter Property="Foreground" Value="{StaticResource InputForegroundColorBrush}"/>
-        </Style>
-
-        <Style x:Key="CreateTextBoxStyle" TargetType="{x:Type TextBox}">
-            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsMouseOver, ElementName=CreateValidationControl}" Value="True">
-                    <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationRuleErrorTemplate}"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="CreateComboBoxStyle" TargetType="{x:Type ComboBox}">
-            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding IsMouseOver, ElementName=CreateValidationControl}" Value="True">
-                    <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationRuleErrorTemplate}"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="UpdateTextBoxStyle" TargetType="{x:Type TextBox}">
-            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
-            <Style.Triggers>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="True"/>
-                        <Condition Binding="{Binding IsMouseOver, ElementName=UpdateValidationControl}" Value="True"/>
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationRuleErrorTemplate}"/>
-                </MultiDataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="UpdateComboBoxStyle" TargetType="{x:Type ComboBox}">
-            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
-            <Style.Triggers>
-                <MultiDataTrigger>
-                    <MultiDataTrigger.Conditions>
-                        <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="True"/>
-                        <Condition Binding="{Binding IsMouseOver, ElementName=UpdateValidationControl}" Value="True"/>
-                    </MultiDataTrigger.Conditions>
-                    <Setter Property="Validation.ErrorTemplate" Value="{StaticResource ValidationRuleErrorTemplate}"/>
-                </MultiDataTrigger>
-            </Style.Triggers>
         </Style>
 
     </Application.Resources>
