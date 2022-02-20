@@ -14,6 +14,11 @@
         <Color x:Key="SecondaryColor">#2090FF</Color>
         <SolidColorBrush x:Key="SecondaryColorBrush" Color="{StaticResource SecondaryColor}"/>
 
+        <LinearGradientBrush x:Key="PrimaryAndSecondaryColorGradientBrush">
+            <GradientStop Offset="0" Color="{StaticResource PrimaryColor}"/>
+            <GradientStop Offset="1" Color="{StaticResource SecondaryColor}"/>
+        </LinearGradientBrush>
+
         <Color x:Key="SeparatorColor">#404040</Color>
         <SolidColorBrush x:Key="SeparatorColorBrush" Color="{StaticResource SeparatorColor}"/>
         <Color x:Key="OutlineColor">#707070</Color>

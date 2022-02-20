@@ -24,6 +24,146 @@
             FontSize="{StaticResource Heading1FontSize}"
             FontWeight="Bold"/>
 
-    </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        </Grid>
 
+
+        <DockPanel Margin="0,15,0,0">
+            <Label
+                DockPanel.Dock="Left"
+                Content="{Binding Products.Count}"
+                ContentStringFormat="You Have {0} Products"
+                FontSize="{StaticResource Heading2FontSize}"
+                FontWeight="Bold"/>
+            
+            <Slider
+                DockPanel.Dock="Right"
+                x:Name="ColumnsSlider"
+                Width="100"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                IsSnapToTickEnabled="True"
+                Maximum="5"
+                Minimum="1"
+                Value="1"/>
+        </DockPanel>
+
+
+        <ItemsControl
+            Margin="-10,0,-10,0"
+            HorizontalContentAlignment="Stretch"
+            Background="Transparent"
+            ItemsSource="{Binding Products}">
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="{Binding Value, ElementName=ColumnsSlider}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border
+                        Margin="10"
+                        Padding="15"
+                        Background="{StaticResource PrimaryAndSecondaryColorGradientBrush}"
+                        CornerRadius="15">
+
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <WrapPanel Grid.Row="0" Orientation="Horizontal">
+                                <TextBlock
+                                    Grid.Column="0"
+                                    FontSize="{StaticResource Heading2FontSize}"
+                                    FontWeight="Bold"
+                                    Foreground="{StaticResource ContentForegroundColorBrush}"
+                                    Text="{Binding Name}"/>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="{StaticResource Heading3FontSize}"
+                                    FontWeight="Bold"
+                                    Foreground="{StaticResource ContentForegroundColorBrush}"
+                                    Text="{Binding Type.Name, StringFormat='({0})'}"/>
+                            </WrapPanel>
+
+                            <StackPanel
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Margin="25,0,5,0"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    FontSize="{StaticResource Heading3FontSize}"
+                                    Foreground="{StaticResource ContentForegroundColorBrush}">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Text" Value="Inactive"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                                                    <Setter Property="Text" Value="Active"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <Ellipse
+                                    Width="8"
+                                    Height="8"
+                                    Margin="10,0,0,0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center">
+                                    <Ellipse.Style>
+                                        <Style TargetType="{x:Type Ellipse}">
+                                            <Setter Property="Fill" Value="Red"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsActive}" Value="True">
+                                                    <Setter Property="Fill" Value="Green"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Ellipse.Style>
+                                </Ellipse>
+
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="1"
+                                Grid.ColumnSpan="2"
+                                Margin="0,25,0,0"
+                                Orientation="Horizontal">
+                                <TextBlock
+                                    FontSize="{StaticResource Heading3FontSize}"
+                                    Foreground="{StaticResource ContentForegroundColorBrush}"
+                                    Text="{Binding MinStockQuantity, StringFormat='Min Stock: {0}'}"/>
+                                <TextBlock
+                                    Margin="5,0,0,0"
+                                    FontSize="{StaticResource Heading3FontSize}"
+                                    Foreground="{StaticResource ContentForegroundColorBrush}"
+                                    Text="{Binding UnitOfMeasurement.Name}"/>
+                            </StackPanel>
+
+                        </Grid>
+
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
 </UserControl>
