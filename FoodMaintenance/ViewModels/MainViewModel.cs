@@ -10,6 +10,10 @@ namespace FoodMaintenance.ViewModels
     {
         #region Fields
         private readonly DbContext _DbContext;
+        private readonly DashboardViewModel _DashboardViewModel;
+        private readonly ProductsViewModel _ProductsViewModel;
+        private readonly ProductTypesViewModel _ProductTypesViewModel;
+        private readonly UnitsOfMeasurementViewModel _UnitsOfMeasurementViewModel;
         #endregion
 
         #region Properties
@@ -35,7 +39,14 @@ namespace FoodMaintenance.ViewModels
             ShowUnitsOfMeasurementCommand = new RelayCommand(ShowUnitsOfMeasurement);
             ChangeWindowStateCommand = new RelayCommand<WindowState>(ChangeWindowState);
             CloseWindowCommand = new RelayCommand<Window?>(CloseWindow);
+
             _DbContext = DbContext;
+            _DashboardViewModel = new DashboardViewModel(NavigationService, _DbContext);
+            _ProductsViewModel = new ProductsViewModel(NavigationService, _DbContext);
+            _ProductTypesViewModel = new ProductTypesViewModel(NavigationService, _DbContext);
+            _UnitsOfMeasurementViewModel = new UnitsOfMeasurementViewModel(NavigationService, _DbContext);
+
+
             ShowDashboard();
         }
         #endregion
@@ -43,19 +54,19 @@ namespace FoodMaintenance.ViewModels
         #region Methods
         public void ShowDashboard()
         {
-            NavigationService.Navigate(new DashboardViewModel(NavigationService, _DbContext));
+            NavigationService.Navigate(_DashboardViewModel);
         }
         public void ShowProducts()
         {
-            NavigationService.Navigate(new ProductsViewModel(NavigationService, _DbContext));
+            NavigationService.Navigate(_ProductsViewModel);
         }
         public void ShowProductTypes()
         {
-            NavigationService.Navigate(new ProductTypesViewModel(NavigationService, _DbContext));
+            NavigationService.Navigate(_ProductTypesViewModel);
         }
         public void ShowUnitsOfMeasurement()
         {
-            NavigationService.Navigate(new UnitsOfMeasurementViewModel(NavigationService, _DbContext));
+            NavigationService.Navigate(_UnitsOfMeasurementViewModel);
         }
         public void ChangeWindowState(WindowState WindowState)
         {
